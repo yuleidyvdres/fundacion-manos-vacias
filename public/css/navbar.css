@@ -1,0 +1,41 @@
+#app{
+	padding-left: 0px;
+    padding-right: 0px;
+}
+.navbar{
+	overflow: auto;
+	margin-bottom: 0px;
+}  
+.c1{
+	border-bottom:1px;
+	background-color: #fff;
+	color:#ff873e;
+	letter-spacing: 2.5px;
+}
+.c2{
+	background-color: #C8E6E6;
+	letter-spacing: 1.5px;
+}
+.col1, .col3{
+	padding-top: 20px;
+}
+.navbar-header{
+	width: 140px;
+}
+.navbar-brand{
+	 padding-top: 10px;
+	 padding-left: 30px;
+}
+.navbar-brand>p{
+	margin-bottom: 0px;
+	font-size: 25px;
+	letter-spacing: 3px;
+	color: #ff873e;
+}
+.navbar-brand>p>img{
+	width: 26%;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    color: #3E3E3E;
+    background-color: #D4EFEF;
+}
