@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('styles')
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/donacion-perfil-niño.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/donacion-perfil-nino.css') }}">
 	<link href="{{ asset('css/login.css') }}" rel="stylesheet">
     <link href="{{ asset('css/common.css') }}" rel="stylesheet">
     
