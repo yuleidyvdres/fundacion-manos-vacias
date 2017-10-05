@@ -11,21 +11,14 @@
 	<div><button id="boton"><span class="glyphicon glyphicon-plus"></span> Agregar un Paciente</button></div>
 	 <div id="panel">
 	 	<center><div class="tamano">
-		@include('template.Formulario-paciente')
+		@include('template.Perfil-niño.Formulario-paciente')
 		</div></center>
 	</div>
-	@include('template.Perfil-ninno')
+	@include('template.Perfil-niño.Perfil-ninno')
 	@include('layouts.common.footer')
 @endsection
 @section('scripts')
 	<script src="{{ asset('js/pacientes.js') }}"></script>
-	<script>
-        $(document).ready(function () {
-            $("#botonIniciar").click (function () {
-                $("#iniciarSesion").modal();
-            });
-        });
-    </script>
 @endsection
 
     

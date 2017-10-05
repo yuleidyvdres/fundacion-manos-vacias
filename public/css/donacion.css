@@ -1,0 +1,30 @@
+.ficha{
+    background-color: rgba(243, 128, 61, 0.43);
+    border: 4px solid rgb(243, 128, 61);
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: #000;
+}
+hr{
+    background:rgb(243, 128, 61) !important; 
+}
+.buscar{
+    padding-left: 80%;
+    margin-top: 20px;
+}
+.donar{
+    background: #00ced1;
+    margin-bottom: 10px;
+    width: 40%;
+    color: #000;
+    font-size: 20px;
+}
+.img1{
+   padding-top: 20px;
+}
+.datos{
+    text-align: right;
+ }
+ .datos>h4{
+    margin-top: 0px;
+ }

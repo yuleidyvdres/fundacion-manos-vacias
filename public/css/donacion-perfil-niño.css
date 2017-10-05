@@ -1,0 +1,21 @@
+.perfil1{
+    background: rgba(255, 195, 44, 0.76);
+    color: #000;
+    border-top: 5px border-style #fff;
+    margin-top: 3px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.perfil2{
+    color: #000;
+    border-top: 5px border-style #fff;
+    margin-top: 3px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.pc1{
+    padding-left: 10%;
+}
+.pc3{
+    padding-right: 10%;
+}

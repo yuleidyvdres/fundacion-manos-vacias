@@ -41,7 +41,7 @@
                 <p>Cáncer: Leucemia</p>
                 <p>Etapa: 1</p>
                 <p>Descripción: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis aperiam nisi praesentium minima accusamus neque obcaecati, libero nesciunt necessitatibus exercitationem distinctio, sapiente animi voluptate fuga alias facere provident tempore doloremque!</p>
-                <a href="{{ url('/') }}" type="button" class="btn-mas">Saber más</a>
+                <a href="{{ url('Donar-perfil') }}" type="button" class="btn-mas">Saber más</a>
                 <!--button type="button" class="btn-mas" href="{{ url('/') }}">Saber más</button-->
             </div>
         </div>
@@ -57,7 +57,7 @@
                 <p>Cáncer: Leucemia</p>
                 <p>Etapa: 2</p>
                 <p>Descripción: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis aperiam nisi praesentium minima accusamus neque obcaecati, libero nesciunt necessitatibus exercitationem distinctio, sapiente animi voluptate fuga alias facere provident tempore doloremque!</p>
-                <a href="{{ url('/') }}" type="button" class="btn-mas">Saber más</a>
+                <a href="{{ url('Donar-perfil') }}" type="button" class="btn-mas">Saber más</a>
                 <!--button class="btn-mas" href="#">Saber más</button-->
             </div>
         </div>

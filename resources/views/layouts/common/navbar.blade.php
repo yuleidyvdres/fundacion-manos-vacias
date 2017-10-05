@@ -30,7 +30,7 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="{{ url('/') }}">Inicio</a></li>
-      <li><a href="{{ url('/Niños') }}">Niños</a></li>
+      <li><a href="{{ url('/Donacion') }}">Niños</a></li>
       <li><a id="botonIniciar">Iniciar Sesión</a></li>
       <li><a href="{{ route('register') }}">Registrarse</a></li>
     </ul>

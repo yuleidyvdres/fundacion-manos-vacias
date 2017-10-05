@@ -26,3 +26,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('Niños', function () {
 	return view('Niños')->with('title','Perfil del Niño');
 });
+
+Route::get('Niños2', function () {
+	return view('Niños2')->with('title','Perfil del Niño');
+});
+
+Route::get('Donacion', function () {
+	return view('Donacion')->with('title','Perfil del Niño');
+});
+Route::get('Donar-perfil', function () {
+	return view('Donar-perfil-niño')->with('title','Perfil del Niño');
+});

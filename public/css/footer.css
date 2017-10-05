@@ -1,0 +1,9 @@
+#footer {
+    background-color: #D4EFEF;
+    margin-right: 0px;
+}
+
+#footer > div {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}

@@ -1,12 +1,12 @@
 <center>
-        	<h3>Insumos y Medicamentos</h3>
+        	<h3>Donaciones</h3>
         	<div class="table-responsive">
         		 <table class="table table-striped">
 				    <thead>
 				      <tr>
 				        <th>Tipo</th>
 				        <th>Nombre</th>
-				        <th>Caracteristica</th>
+				        <th>Característica</th>
 				        <th>Descripción</th>
 				        <th>Recibido</th>
 				        <th>Comentario</th>
@@ -23,7 +23,7 @@
 				        <td><textarea class="form-control" rows="2" id="comment"></textarea></td>
 				        <td>
 				        	<button type="button" class="btn btn-primary active">
-				        		<span class="glyphicon glyphicon-cog"></span>
+								  	<i class="fa fa-cog" aria-hidden="true"></i>
 				        	</button>
 				        </td>
 				      </tr>
@@ -36,7 +36,7 @@
 				        <td>Gracias por la Ayuda!</td>
 				        <td>
 				        	<button type="button" class="btn btn-primary disabled">
-				        		<span class="glyphicon glyphicon-cog"></span>
+										<i class="fa fa-cog" aria-hidden="true"></i>
 				        	</button>
 				        </td>
 				      </tr>
@@ -46,9 +46,13 @@
         	<div>
         		<div class="form-group">
         			<div class="insumos2"></div>
-				 	<center><button class="btn btn-info btn-agg btn-md mas" id="insumos2" type="button">+</button>
-				 	</br></br>
-					<button type="submit" class="btn btn-default">Guardar insumo</button></center>
-				</div>
-        	</div>
+							<center>
+								<button class="btn btn-info btn-agg btn-md mas" id="insumos2" type="button">
+									<i class="fa fa-plus" aria-hidden="true"></i>
+								</button>
+								</br></br>
+								<button type="submit" class="btn btn-default">Guardar insumo</button>
+							</center>
+			    	</div>
+          </div>
 		</center>
