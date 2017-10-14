@@ -29,12 +29,11 @@
       </a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="{{ url('/') }}">Inicio</a></li>
-      <li class="dropdown">
+      <li class="dropdown {{ Request::is('admin/tipo-cancer*') ? 'active' : null }}">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tipo de Cáncer <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Agregar</a></li>
-          <li><a href="#">Listar</a></li>
+          <li><a href="{{ url('/admin/tipo-cancer/agregar') }}" >Agregar</a></li>
+          <li><a href="{{ url('/admin/tipo-cancer/listar') }}">Listar</a></li>
         </ul>
       </li>
       <li class="dropdown">

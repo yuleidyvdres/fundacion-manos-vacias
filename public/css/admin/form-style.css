@@ -1,0 +1,52 @@
+.bck-icon {
+    background-color: #00ced1;
+}
+
+.bck-icon i {
+    color: #fff;
+}
+
+.form-width {
+    position: relative;
+    display: block;
+    margin: 0 auto 0 auto;
+    width: 20%;
+}
+
+.btn-submit {
+    position: relative;
+    display: block;
+    margin: 0 auto 0 auto;
+    background-color: #00ced1;
+    border-color: #00ced1;
+    border-radius: 50px;
+    color: #fff;
+}
+
+.form-control:focus {
+    border: 2px solid #ffc42c;
+    border-left-style: none
+}
+
+.border-inp {
+    border-radius: 30px;
+    border-left: none;
+}
+
+@media only screen and (max-width: 767px) {
+    .form-width {
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .form-width {
+        width: 60%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .form-width {
+        width: 40%;
+    }
+}

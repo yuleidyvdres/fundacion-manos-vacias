@@ -33,6 +33,10 @@
     font-weight: bold;
 }
 
+.row {
+    margin-right: 0px;
+}
+
 #social-networks{
 	display: inline-block;
 }

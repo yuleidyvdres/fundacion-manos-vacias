@@ -39,7 +39,15 @@ Route::get('Donar-perfil', function () {
 });
 
 Route::group(['prefix' => 'admin'], function(){
-	Route::get('agregar-tipo-cancer', function (){
-		return view('admin.agregar-tipo-cancer')->with('title', 'Tipo de Cáncer');
+
+	Route::group(['prefix' => 'tipo-cancer'], function(){
+		Route::get('agregar', function (){
+			return view('admin.cancer.agregar')->with('title', 'Tipo de Cáncer');
+		});
+	
+		Route::get('listar', function(){
+			return view('admin.cancer.listar')->with('title', 'Lista Tipo de Cáncer');
+		});
 	});
+	
 });

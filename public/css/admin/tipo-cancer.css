@@ -1,0 +1,50 @@
+#title-pag {
+    text-align: center;
+    position: relative;
+    display: block;
+    margin: 0 auto 0 auto;
+    background-color: #ff873e;
+    padding: 10px 10px 10px 10px;
+    width: 50%;
+    color: #fff;
+}
+
+#title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.title-page > h2 {
+    color: #fff;
+    text-align: center;
+}
+
+table, thead tr th {
+    text-align: center;
+}
+
+@media only screen and (max-width: 767px) {
+    #title-pag {
+        font-size: 1.5em;
+    }
+    
+    .row center .table  {
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    #title-pag {
+        font-size: 1.5em;
+    }
+
+    .row center .table {
+        width: 60%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .row center .table {
+        width: 40%;
+    }
+}
