@@ -37,3 +37,9 @@ Route::get('Donacion', function () {
 Route::get('Donar-perfil', function () {
 	return view('Donar-perfil-niño')->with('title','Perfil del Niño');
 });
+
+Route::group(['prefix' => 'admin'], function(){
+	Route::get('agregar-tipo-cancer', function (){
+		return view('admin.agregar-tipo-cancer')->with('title', 'Tipo de Cáncer');
+	});
+});

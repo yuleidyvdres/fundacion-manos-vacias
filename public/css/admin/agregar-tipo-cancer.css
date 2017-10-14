@@ -1,0 +1,11 @@
+.title-page {
+    background-color: #ff873e;
+    padding: 5px 5px 5px 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.title-page > h2 {
+    color: #fff;
+    text-align: center;
+}
