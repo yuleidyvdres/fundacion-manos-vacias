@@ -23,6 +23,17 @@ table, thead tr th {
     text-align: center;
 }
 
+.search {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.btn-search {
+    background-color: #ffc42c;
+    border-color: #ffc42c;
+    color: #fff;
+}
+
 @media only screen and (max-width: 767px) {
     #title-pag {
         font-size: 1.5em;

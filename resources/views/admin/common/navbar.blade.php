@@ -36,18 +36,25 @@
           <li><a href="{{ url('/admin/tipo-cancer/listar') }}">Listar</a></li>
         </ul>
       </li>
-      <li class="dropdown">
+      <li class="dropdown {{ Request::is('admin/contacto*') ? 'active' : null }}">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contacto <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Agregar</a></li>
-          <li><a href="#">Listar</a></li>
+        <ul class="dropdown-menu ">
+          <li><a href="{{ url('/admin/contacto/agregar') }}">Agregar</a></li>
+          <li><a href="{{ url('/admin/contacto/listar') }}">Listar</a></li>
         </ul>
       </li>
-      <li class="dropdown">
+      <li class="dropdown {{ Request::is('admin/donaciones*') ? 'active' : null }}">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Donaciones <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Agregar</a></li>
-          <li><a href="#">Listar</a></li>
+          <li><a href="{{ url('/admin/donaciones/agregar') }}">Agregar</a></li>
+          <li><a href="{{ url('/admin/donaciones/listar') }}">Listar</a></li>
+        </ul>
+      </li>
+      <li class="dropdown {{ Request::is('admin/usuarios*') ? 'active' : null }}">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="{{ url('/admin/usuarios/agregar') }}">Agregar</a></li>
+          <li><a href="{{ url('/admin/usuarios/listar') }}">Listar</a></li>
         </ul>
       </li>
     </ul>

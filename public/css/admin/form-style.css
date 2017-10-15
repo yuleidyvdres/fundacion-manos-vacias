@@ -10,7 +10,6 @@
     position: relative;
     display: block;
     margin: 0 auto 0 auto;
-    width: 20%;
 }
 
 .btn-submit {
@@ -25,7 +24,6 @@
 
 .form-control:focus {
     border: 2px solid #ffc42c;
-    border-left-style: none
 }
 
 .border-inp {

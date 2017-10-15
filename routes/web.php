@@ -49,5 +49,34 @@ Route::group(['prefix' => 'admin'], function(){
 			return view('admin.cancer.listar')->with('title', 'Lista Tipo de Cáncer');
 		});
 	});
+
+	Route::group(['prefix' => 'contacto'], function(){
+		Route::get('agregar', function (){
+			return view('admin.contacto.agregar')->with('title', 'Agregar Atributo Contacto');
+		});
 	
+		Route::get('listar', function(){
+			return view('admin.contacto.listar')->with('title', 'Lista Atributos Contacto');
+		});
+	});
+	
+	Route::group(['prefix' => 'donaciones'], function(){
+		Route::get('agregar', function (){
+			return view('admin.donaciones.agregar')->with('title', 'Agregar Donación');
+		});
+
+		Route::get('listar', function (){
+			return view('admin.donaciones.listar')->with('title', 'Listado Donación');
+		});
+	});
+	
+	Route::group(['prefix' => 'usuarios'], function(){
+		Route::get('agregar', function (){
+			return view('admin.usuarios.agregar')->with('title', 'Agregar Usuario');
+		});
+
+		Route::get('listar', function (){
+			return view('admin.usuarios.listar')->with('title', 'Listado Usuarios');
+		});
+	});
 });
