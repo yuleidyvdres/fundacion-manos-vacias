@@ -22,15 +22,15 @@ class AddDonacionesTabla extends Migration
 
           Schema::create('nino-donacion', function (Blueprint $table) {
             $table->increments('id');
-            $table->enum('status',['Recibido','No-recibido']);
+            $table->enum('status',['Recibido','No-recibido'])->default('No-recibido');
             $table->enum('urgencia',['Poca','Mediana','Mucha']);
             $table->string('descripcion')->nullable();
             $table->string('comentario')->nullable();
             $table->integer('donaciones_id')->unsigned();
-            $table->integer('nino_partida');
+            $table->integer('nino_id');
 
             $table->foreign('donaciones_id')->references('id')->on('donaciones')->onDelete('cascade');
-            $table->foreign('nino_partida')->references('partida')->on('ninos')->onDelete('cascade');
+            $table->foreign('nino_id')->references('id')->on('ninos')->onDelete('cascade');
 
             $table->timestamps();
         });

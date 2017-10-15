@@ -14,15 +14,15 @@ class AddNinosTabla extends Migration
     public function up()
     {
         Schema::create('ninos', function (Blueprint $table) {
-            $table->integer('partida')->primary();
+            $table->integer('id')->primary();
             $table->string('nombre',30);
             $table->string('apellido',20);
             $table->enum('genero',['Niño','Niña']);
             $table->date('fecha_nacimiento');
             $table->string('situacion_actual');
-            $table->string('users_ci');
+            $table->string('users_id');
 
-            $table->foreign('users_ci')->references('ci')->on('users')->onDelete('cascade');
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });

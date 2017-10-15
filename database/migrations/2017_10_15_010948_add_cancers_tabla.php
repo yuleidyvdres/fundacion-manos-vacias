@@ -23,12 +23,12 @@ class AddCancersTabla extends Migration
          Schema::create('nino-cancer', function (Blueprint $table) {
             $table->date('fecha_deteccion');
             $table->integer('cancer_id')->unsigned();
-            $table->integer('nino_partida');
+            $table->integer('nino_id');
 
-            $table->primary(['cancer_id','nino_partida']);
+            $table->primary(['cancer_id','nino_id']);
 
             $table->foreign('cancer_id')->references('id')->on('cancers')->onDelete('cascade');
-            $table->foreign('nino_partida')->references('partida')->on('ninos')->onDelete('cascade');
+            $table->foreign('nino_id')->references('id')->on('ninos')->onDelete('cascade');
 
             $table->timestamps();
         });

@@ -23,10 +23,10 @@ class AddContactosTabla extends Migration
             $table->increments('id');
             $table->string('valor');
             $table->integer('contacto_id')->unsigned();
-            $table->integer('nino_partida');
+            $table->integer('nino_id');
 
             $table->foreign('contacto_id')->references('id')->on('contactos')->onDelete('cascade');
-            $table->foreign('nino_partida')->references('partida')->on('ninos')->onDelete('cascade');
+            $table->foreign('nino_id')->references('id')->on('ninos')->onDelete('cascade');
 
             $table->timestamps();
         });
