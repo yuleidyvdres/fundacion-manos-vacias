@@ -23,7 +23,7 @@ class AddDonacionesTabla extends Migration
           Schema::create('nino-donacion', function (Blueprint $table) {
             $table->increments('id');
             $table->enum('status',['Recibido','No-recibido'])->default('No-recibido');
-            $table->enum('urgencia',['Poca','Mediana','Mucha']);
+            $table->enum('urgencia',['Baja','Mediana','Alta']);
             $table->string('descripcion')->nullable();
             $table->string('comentario')->nullable();
             $table->integer('donaciones_id')->unsigned();
