@@ -15,13 +15,14 @@
     </section>
     <section class="row">
         <div class="col-xs-12 col-sm-12">
-            <form method="POST" action="" class="form-width">
+            <form method="POST" action="{{ route('usuarios.store') }}" class="form-width">
+                {{ csrf_field() }}
                 <div class="form-group">
                     <div class="input-group input-group-md">
                         <span class="input-group-addon border-inp bck-icon" id="inputCI">
                             <i class="fa fa-drivers-license" aria-hidden="true"></i>
                         </span>
-                        <input type="text" id="donacion" name="donacion" class="form-control border-inp" placeholder="Cédula" aria-describedby="inputCI" required>
+                        <input type="text" id="id" name="id" class="form-control border-inp" placeholder="Cédula" aria-describedby="inputCI" required>
                     </div>
                 </div>
                 <div class="form-group">

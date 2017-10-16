@@ -9,7 +9,7 @@
         </div>
         <div class="modal-body">
             
-            <form class="form-horizontal form-sesion" method="POST" action="{{ route('login') }}">
+            <form class="form-horizontal form-sesion" method="POST" action="{{ route('representante.auth') }}">
                 {{ csrf_field() }}
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     <div class="input-group input-group-md input-capsule">

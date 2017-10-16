@@ -15,13 +15,14 @@
     </section>
     <section class="row">
         <div class="col-xs-12 col-sm-12">
-            <form method="POST" action="" class="form-width">
+            <form method="POST" action="{{ route('contacto.store') }}" class="form-width">
+                {{ csrf_field() }}
                 <div class="form-group">
                     <div class="input-group input-group-md">
                         <span class="input-group-addon border-inp bck-icon" id="inputNombre">
                             <i class="fa fa-asterisk" aria-hidden="true"></i>
                         </span>
-                        <input type="text" id="contacto" name="contacto" class="form-control border-inp" placeholder="Nombre de Atributo Contacto" aria-describedby="inputNombre" required>
+                        <input type="text" id="nombre" name="nombre" class="form-control border-inp" placeholder="Nombre de Atributo Contacto" aria-describedby="inputNombre" required>
                     </div>
                 </div>
                 <div class="form-group">

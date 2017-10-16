@@ -30,9 +30,23 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="{{ url('/') }}">Inicio</a></li>
-      <li><a href="{{ url('/Donacion') }}">Niños</a></li>
-      <li><a id="botonIniciar">Iniciar Sesión</a></li>
-      <li><a href="{{ route('register') }}">Registrarse</a></li>
+      @if(Auth::check())
+        <li><a href="{{ url('/Donacion') }}">Niños</a></li>
+      @endif
+      @if(!Auth::check())
+        <li><a id="botonIniciar">Iniciar Sesión</a></li>
+        <li><a href="{{ route('representante.create') }}">Registrarse</a></li>
+      @endif
+      @if(Auth::check())
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle-o" aria-hidden="true"></i> {{ Auth::user()->nombre }}<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="{{ url('/representante/logout') }}">Cerrar Sesión</a></li>
+            </ul>
+          </li>
+        </ul>
+      @endif
     </ul>
   </div>
 </nav>
