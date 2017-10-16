@@ -55,17 +55,25 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 		]);
 	});
 
-	Route::resource('contacto', 'ContactoController');
 	Route::get('/contacto/{id}/destroy', [
 		'uses' => 'ContactoController@destroy',
 		'as'   => 'admin.contacto.destroy'
 	]);
+	Route::post('/contacto/search', [
+		'uses' => 'ContactoController@search',
+		'as'   => 'admin.contacto.search'
+	]);
+	Route::resource('contacto', 'ContactoController');
 
-	Route::resource('donaciones', 'DonacionesController');
 	Route::get('/donacion/{id}/destroy', [
 		'uses' => 'DonacionesController@destroy',
 		'as'   => 'admin.donacion.destroy'
 	]);
+	Route::post('/donacion/search', [
+		'uses' => 'DonacionesController@search',
+		'as'   => 'admin.donaciones.search'
+	]);
+	Route::resource('donaciones', 'DonacionesController');
 
 	Route::get('/usuario/{id}/destroy', [
 		'uses' => 'UsuariosController@destroy',

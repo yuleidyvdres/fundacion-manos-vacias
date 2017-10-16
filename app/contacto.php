@@ -15,4 +15,10 @@ class contacto extends Model
                                     ->withPivot('valor')
                                     ->withTimestamps();
     }
+
+    public function scopeNombre($query, $nombre){
+    	if (trim($nombre)!="") {
+    		$query->where("nombre","LIKE","%$nombre%");
+    	}		
+    }
 }

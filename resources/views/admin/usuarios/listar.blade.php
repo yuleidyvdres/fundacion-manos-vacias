@@ -22,9 +22,9 @@
                 <div class="form-group">
                     <input type="text" name="apellido" class="form-control border-inp" placeholder="Buscar Apellido">
                 </div>
-                <button type="submit" class="btn btn-default btn-search">
-                    <i class="fa fa-search" aria-hidden="true"></i> 
-                </button>
+                <div class="form-group">
+                    <input type="submit" value="Buscar" class="btn btn-default btn-md btn-submit">
+                </div>
             </form>
         </div>
     </section>
@@ -57,6 +57,7 @@
                         @endforeach                        
                     </tbody>
                 </table>
+                {!! $usuarios->render() !!}
             </center>
         </div>
     </section>

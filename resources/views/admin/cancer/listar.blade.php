@@ -6,16 +6,15 @@
     <link href="{{ asset('css/admin/form-style.css') }}" rel="stylesheet">
 @endsection
 @section('content')
-    @include('admin.common.navbar')
-    <section class="container" style="margin-top:20px;">
-        @include('flash::message')
-    </section>
-    
+    @include('admin.common.navbar')    
     <section class="row">
         <div class="col-xs-12 col-sm-12" id="title">
             <h2 id="title-pag">Lista de Tipo de Cáncer</h2>
         </div>
     </section>
+    <center>
+        @include('flash::message')
+    </center>
     <section class="row">
         <div class="col-xs-12 col-sm-12 search">
             <form class="navbar-form form-width" method="GET" action="{{route('cancer.index')}}" role="search">

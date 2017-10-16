@@ -35,14 +35,12 @@ class UsuariosController extends Controller
     }
 
     public function search (Request $request) {
-        $search = $request->apellido;
-        
-        $usuarios = User::where('apellido', 'LIKE', "%{$search}%")->get();
+        $usuarios = User::apellido($request->get('apellido'))->orderBy('id', 'ASC')->paginate(10);
 
         if($usuarios->count() > 0)
             return view('admin.usuarios.listar')->with('usuarios', $usuarios);
         else {
-            flash('No se encontraron coincidencias ')->warning()->important();
+            flash('No se encontraron coincidencias ')->error()->important();
             return redirect()->route('usuarios.index');
         }
     }

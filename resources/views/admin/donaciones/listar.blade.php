@@ -18,13 +18,14 @@
     <section class="row">
         @include('flash::message')
         <div class="col-xs-12 col-sm-12 search">
-            <form class="navbar-form form-width">
+            <form class="navbar-form form-width" method="POST" action="{{ route('admin.donaciones.search') }}">
+                {{ csrf_field() }}
                 <div class="form-group">
-                    <input type="text" class="form-control border-inp" placeholder="Buscar Nombre">
+                    <input type="text" name="nombre" class="form-control border-inp" placeholder="Buscar Nombre">
                 </div>
-                <button type="submit" class="btn btn-default btn-search">
-                    <i class="fa fa-search" aria-hidden="true"></i> 
-                </button>
+                <div class="form-group">
+                    <input type="submit" value="Buscar" class="btn btn-default btn-md btn-submit">
+                </div>
             </form>
         </div>
     </section>

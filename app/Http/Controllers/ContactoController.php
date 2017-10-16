@@ -31,4 +31,15 @@ class ContactoController extends Controller
         flash('Se ha eliminado el atributo contacto ' .$contacto->nombre)->error()->important();
         return redirect()->route('contacto.index');
     }
+
+    public function search (Request $request) {
+        $contacto = contacto::nombre($request->get('nombre'))->orderBy('id', 'ASC')->paginate(10);
+
+        if($contacto->count() > 0)
+            return view('admin.contacto.listar')->with('contacto', $contacto);
+        else {
+            flash('No se encontraron coincidencias ')->error()->important();
+            return redirect()->route('contacto.index');
+        }
+    }
 }
