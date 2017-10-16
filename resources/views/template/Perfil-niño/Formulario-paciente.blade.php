@@ -29,6 +29,15 @@
 				  </select>
 		    </div>
 		  </div>
+			<label style="text-align: left; width: 100%;">Situación Actual</label></br>
+		  <div class="form-group">
+		  	<div class="input-group input-group-md input-capsule">
+				<span class="borde-inc input-group-addon">
+							<i class="fa fa-bars" aria-hidden="true"></i>
+				</span>
+		      <textarea class="form-control" rows="3" id="SA" placeholder="Situación Actual"></textarea>
+		    </div>
+		  </div>
 			<label style="text-align: left; width: 100%;">Ubicación</label></br>
 			<div class="form-group">
 					<div class="input-group input-group-md input-capsule">
@@ -56,14 +65,7 @@
 					</div>
 		  </div>
 
-			<div class="form-group">
-		  	<div class="input-group input-group-md input-capsule">
-				<span class="borde-inc input-group-addon">
-							<i class="fa fa-bars" aria-hidden="true"></i>
-				</span>
-		      <textarea class="form-control" rows="3" id="SA" placeholder="Situación Actual"></textarea>
-		    </div>
-		  </div>
+			
 			<button  class="btn btn-default">Agregar Paciente</button></br></br>
 </form><!--fin datos generales-->
 <form id="Cancer"> <!--inicio datos canceer-->
@@ -92,15 +94,8 @@
 		      <input type="date" class="borde form-control" id="Fecha_inicio" placeholder="Fecha de Diagnóstico del Cáncer">
 		    </div>
 		  </div>
-
-		  <div class="form-group">
-		  	<label for="Avance-Cancer" style="text-align: left; width: 100%;">Etapa del Cáncer</label>
-		  	<label class="radio-inline"><input type="radio" name="Etapa">0</label>
-				<label class="radio-inline"><input type="radio" name="Etapa">I</label>
-				<label class="radio-inline"><input type="radio" name="Etapa">II</label>
-				<label class="radio-inline"><input type="radio" name="Etapa">III</label>
-		  </div>
-		</div></div>
+		</div>
+	    </div>
 			<center>
 			<button class="btn btn-info btn-agg btn-md" id="tipo-cancer" type="button">
 				<i class="fa fa-plus" aria-hidden="true"></i>

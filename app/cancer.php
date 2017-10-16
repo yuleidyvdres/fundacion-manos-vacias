@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laracasts\Flash\Flash;
 
 class cancer extends Model
 {
@@ -15,4 +16,15 @@ class cancer extends Model
          							->withPivot('fecha_deteccion')
                                     ->withTimestamps();
     }
+    public function scopeNombre($query, $nombre){
+    	if (trim($nombre)!="") {
+    		$query->where("nombre","LIKE","%$nombre%");
+
+    		if ($query->count()==0) {
+    			flash('No se encontraron resultados de '. $nombre)->error()->important();
+    		}
+    	}
+    		
+    }
 }
+

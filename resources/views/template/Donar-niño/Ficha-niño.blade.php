@@ -29,16 +29,6 @@
         </div>
   </div>
   <hr>
-  <div class="Etapa del Cancer"> <center>
-        <h4>Etapa del Cáncer</h4>
-		<div style="width:50%">
-            <div class="progress">
-				<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" style="width:35%">
-					Etapa I
-				</div>
-			</div>
-	    </div> </center>
-  </div>
   <div><center> 
   <a href="{{ url('/Donar-perfil') }}" class="btn btn-default donar">Donar</a>
   </div></center>

@@ -13,9 +13,10 @@
             </div>
         </section>
         <section class="row">
-            <div class="col-xs-12 col-sm-12">
-                <form method="POST" action="" class="form-width">
-                    <div class="form-group">
+            <div class="col-xs-12 col-sm-12">     
+               <form method="POST" class="form-width" action="{{ route('cancer.store') }}">
+                {{ csrf_field() }} 
+                   <div class="form-group">
                         <div class="input-group input-group-md">
                             <span class="input-group-addon border-inp bck-icon" id="inputNombre">
                                 <i class="fa fa-asterisk" aria-hidden="true"></i>
@@ -24,9 +25,10 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-default btn-lg btn-submit">Guardar</button>
+                        <input type="submit" value="Submit" class="btn btn-default btn-lg btn-submit">
                     </div>
                 </form>
+         
             </div>
         </section>
     @include('layouts.common.footer')

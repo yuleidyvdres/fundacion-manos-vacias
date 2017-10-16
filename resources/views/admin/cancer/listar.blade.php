@@ -7,6 +7,10 @@
 @endsection
 @section('content')
     @include('admin.common.navbar')
+    <section class="container" style="margin-top:20px;">
+        @include('flash::message')
+    </section>
+    
     <section class="row">
         <div class="col-xs-12 col-sm-12" id="title">
             <h2 id="title-pag">Lista de Tipo de Cáncer</h2>
@@ -14,13 +18,14 @@
     </section>
     <section class="row">
         <div class="col-xs-12 col-sm-12 search">
-            <form class="navbar-form form-width">
+            <form class="navbar-form form-width" method="GET" action="{{route('cancer.index')}}" role="search">
+
                 <div class="form-group">
-                    <input type="text" class="form-control border-inp" placeholder="Buscar Tipo Cáncer">
+                    <input type="text" name='nombre' id='nombre' class="form-control border-inp" placeholder="Buscar Tipo Cáncer">
                 </div>
-                <button type="submit" class="btn btn-default btn-search">
-                    <i class="fa fa-search" aria-hidden="true"></i> 
-                </button>
+                <div class="form-group">
+                    <input type="submit" value="Buscar" class="btn btn-default btn-md btn-submit">
+                </div>
             </form>
         </div>
     </section>
@@ -36,50 +41,18 @@
                         </tr>
                     </thead> 
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Leucemia</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Leucemia</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Leucemia</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Leucemia</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Leucemia</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Leucemia</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
+                         @foreach($cancer as $can)
+                            <tr>
+                               <td>{{$can->id}}</td>
+                               <td>{{$can->nombre}}</td>
+                               <td>
+                                    <a href="{{ route('cancer.destroy', $can->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
+                {!! $cancer->render() !!}
             </center>
         </div>
     </section>
