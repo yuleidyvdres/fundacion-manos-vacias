@@ -31,9 +31,10 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="{{ url('/') }}">Inicio</a></li>
       @if(Auth::check())
-        <li><a href="{{ url('/Donacion') }}">Niños</a></li>
+        <li><a href="{{ url('/Niños') }}">Niños</a></li>
       @endif
       @if(!Auth::check())
+        <li><a href="{{ url('Donacion') }}">Donaciones</a></li>
         <li><a id="botonIniciar">Iniciar Sesión</a></li>
         <li><a href="{{ route('representante.create') }}">Registrarse</a></li>
       @endif
