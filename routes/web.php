@@ -67,9 +67,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 		'as'   => 'admin.donacion.destroy'
 	]);
 
-	Route::resource('usuarios', 'UsuariosController');
 	Route::get('/usuario/{id}/destroy', [
 		'uses' => 'UsuariosController@destroy',
 		'as'   => 'admin.usuarios.destroy'
 	]);
+	Route::post('/usuarios/search', [
+		'uses' => 'UsuariosController@search',
+		'as'   => 'admin.usuarios.search'
+	]);
+	Route::resource('usuarios', 'UsuariosController');
 });

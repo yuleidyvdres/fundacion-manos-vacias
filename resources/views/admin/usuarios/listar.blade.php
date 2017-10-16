@@ -17,9 +17,10 @@
     </center>
     <section class="row">
         <div class="col-xs-12 col-sm-12 search">
-            <form class="navbar-form form-width">
+            <form class="navbar-form form-width" method="POST" action="{{ route('admin.usuarios.search') }}">
+                {{ csrf_field() }}
                 <div class="form-group">
-                    <input type="text" class="form-control border-inp" placeholder="Buscar Apellido">
+                    <input type="text" name="apellido" class="form-control border-inp" placeholder="Buscar Apellido">
                 </div>
                 <button type="submit" class="btn btn-default btn-search">
                     <i class="fa fa-search" aria-hidden="true"></i> 

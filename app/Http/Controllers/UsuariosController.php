@@ -33,4 +33,17 @@ class UsuariosController extends Controller
         flash('Se ha eliminado al ' .$usuario->rol. ' '.$usuario->nombre)->error()->important();
         return redirect()->route('usuarios.index');
     }
+
+    public function search (Request $request) {
+        $search = $request->apellido;
+        
+        $usuarios = User::where('apellido', 'LIKE', "%{$search}%")->get();
+
+        if($usuarios->count() > 0)
+            return view('admin.usuarios.listar')->with('usuarios', $usuarios);
+        else {
+            flash('No se encontraron coincidencias ')->warning()->important();
+            return redirect()->route('usuarios.index');
+        }
+    }
 }
