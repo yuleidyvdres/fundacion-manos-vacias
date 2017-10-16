@@ -36,50 +36,18 @@
                         </tr>
                     </thead> 
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Dirección</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Dirección</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Dirección</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Dirección</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Dirección</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Dirección</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
+                        @foreach($contacto as $cont)
+                            <tr>
+                                <td>{{ $cont->id }}</td>
+                                <td>{{ $cont->nombre }}</td>
+                                <td>
+                                    <a href="{{ route('admin.contacto.destroy', $cont->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
+                {!! $contacto->render() !!}
             </center>
         </div>
     </section>

@@ -37,56 +37,19 @@
                         </tr>
                     </thead> 
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td> Glucofage</td>
-                            <td>Medicamento</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td> Glucofage</td>
-                            <td>Medicamento</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td> Glucofage</td>
-                            <td>Medicamento</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td> Glucofage</td>
-                            <td>Medicamento</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td> Glucofage</td>
-                            <td>Medicamento</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td> Glucofage</td>
-                            <td>Medicamento</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
+                        @foreach($donaciones as $donacion)
+                            <tr>
+                                <td>{{ $donacion->id }}</td>
+                                <td>{{ $donacion->nombre }}</td>
+                                <td>{{ $donacion->tipo }}</td>
+                                <td>
+                                    <a href="{{ route('admin.donacion.destroy', $donacion->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
+                {!! $donaciones->render() !!}
             </center>
         </div>
     </section>

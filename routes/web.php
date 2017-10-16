@@ -38,9 +38,11 @@ Route::get('Donar-perfil', function () {
 	return view('Donar-perfil-niño')->with('title','Perfil del Niño');
 });
 
-Route::group(['prefix' => 'admin'], function(){
+Route::resource('representante', 'RepresentanteController');
 
-	Route::group(['prefix' => 'tipo-cancer'], function(){
+Route::group(['prefix' => 'admin'], function(){
+	
+	/*Route::group(['prefix' => 'tipo-cancer'], function(){
 		Route::get('agregar', function (){
 			return view('admin.cancer.agregar')->with('title', 'Tipo de Cáncer');
 		});
@@ -48,35 +50,23 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::get('listar', function(){
 			return view('admin.cancer.listar')->with('title', 'Lista Tipo de Cáncer');
 		});
-	});
+	});*/
 
-	Route::group(['prefix' => 'contacto'], function(){
-		Route::get('agregar', function (){
-			return view('admin.contacto.agregar')->with('title', 'Agregar Atributo Contacto');
-		});
-	
-		Route::get('listar', function(){
-			return view('admin.contacto.listar')->with('title', 'Lista Atributos Contacto');
-		});
-	});
-	
-	Route::group(['prefix' => 'donaciones'], function(){
-		Route::get('agregar', function (){
-			return view('admin.donaciones.agregar')->with('title', 'Agregar Donación');
-		});
+	Route::resource('contacto', 'ContactoController');
+	Route::get('/contacto/{id}/destroy', [
+		'uses' => 'ContactoController@destroy',
+		'as'   => 'admin.contacto.destroy'
+	]);
 
-		Route::get('listar', function (){
-			return view('admin.donaciones.listar')->with('title', 'Listado Donación');
-		});
-	});
-	
-	Route::group(['prefix' => 'usuarios'], function(){
-		Route::get('agregar', function (){
-			return view('admin.usuarios.agregar')->with('title', 'Agregar Usuario');
-		});
+	Route::resource('donaciones', 'DonacionesController');
+	Route::get('/donacion/{id}/destroy', [
+		'uses' => 'DonacionesController@destroy',
+		'as'   => 'admin.donacion.destroy'
+	]);
 
-		Route::get('listar', function (){
-			return view('admin.usuarios.listar')->with('title', 'Listado Usuarios');
-		});
-	});
+	Route::resource('usuarios', 'UsuariosController');
+	Route::get('/usuario/{id}/destroy', [
+		'uses' => 'UsuariosController@destroy',
+		'as'   => 'admin.usuarios.destroy'
+	]);
 });

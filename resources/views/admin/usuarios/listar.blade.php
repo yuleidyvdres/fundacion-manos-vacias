@@ -33,42 +33,22 @@
                             <th>Cédula</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
+                            <th>Correo</th>
                             <th>Eliminar</th>
                         </tr>
                     </thead> 
                     <tbody>
-                        <tr>
-                            <td>8095809</td>
-                            <td>Andrea</td>
-                            <td>Sánchez</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1234567</td>
-                            <td>Carlos</td>
-                            <td>Gutierrez</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1234561</td>
-                            <td>Teresa</td>
-                            <td>de la Parra</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>345671</td>
-                            <td>Mario</td>
-                            <td>Carvajal</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
+                        @foreach($usuarios as $usuario)
+                            <tr>
+                                <td>{{ $usuario->id }}</td>
+                                <td>{{ $usuario->nombre }}</td>
+                                <td>{{ $usuario->apellido }}</td>
+                                <td>{{ $usuario->email }}</td>
+                                <td>
+                                    <a href="{{ route('admin.usuarios.destroy', $usuario->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach                        
                     </tbody>
                 </table>
             </center>

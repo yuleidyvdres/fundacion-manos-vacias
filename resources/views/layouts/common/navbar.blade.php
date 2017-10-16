@@ -32,7 +32,7 @@
       <li class="active"><a href="{{ url('/') }}">Inicio</a></li>
       <li><a href="{{ url('/Donacion') }}">Niños</a></li>
       <li><a id="botonIniciar">Iniciar Sesión</a></li>
-      <li><a href="{{ route('register') }}">Registrarse</a></li>
+      <li><a href="{{ route('representante.create') }}">Registrarse</a></li>
     </ul>
   </div>
 </nav>

@@ -82,7 +82,6 @@ endsection-->
 @endsection
 
 @section('content')
-    <!--div class="row color-section"></div-->
    @include('layouts.common.navbar')
     <section class="row title-page">
         <div class="col-xs-12 col-sm-12">
@@ -111,7 +110,15 @@ endsection-->
                         <span class="input-group-addon borde-inc" id="inputNombre">
                             <i class="fa fa-id-card-o" aria-hidden="true"></i>
                         </span>
-                        <input type="text" id="nombre" name="nombre" class="form-control borde input-register" placeholder="Nombre y Apellido" aria-describedby="inputNombre" required>
+                        <input type="text" id="nombre" name="nombre" class="form-control borde input-register" placeholder="Nombre" aria-describedby="inputNombre" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-md input-capsule">
+                        <span class="input-group-addon borde-inc" id="inputApellido">
+                            <i class="fa fa-id-card-o" aria-hidden="true"></i>
+                        </span>
+                        <input type="text" id="apellido" name="apellido" class="form-control borde input-register" placeholder="Apellido" aria-describedby="inputApellido" required>
                     </div>
                 </div>
                 <!-- Correo -->
