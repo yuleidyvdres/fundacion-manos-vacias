@@ -29,9 +29,9 @@
       </a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="{{ url('/') }}">Inicio</a></li>
+      <li class="{{ Request::is('/') ? 'active' : null }}"><a href="{{ url('/') }}">Inicio</a></li>
       @if(Auth::check())
-        <li><a href="{{ url('/Niños') }}">Niños</a></li>
+        <li class="{{ Request::is('Niños*') ? 'active' : null }}"><a href="{{ url('/Niños') }}">Niños</a></li>
       @endif
       @if(!Auth::check())
         <li><a href="{{ url('Donacion') }}">Donaciones</a></li>
