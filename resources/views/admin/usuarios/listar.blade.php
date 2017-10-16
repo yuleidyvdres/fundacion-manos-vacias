@@ -34,6 +34,7 @@
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Correo</th>
+                            <th>Tipo</th>
                             <th>Eliminar</th>
                         </tr>
                     </thead> 
@@ -44,6 +45,7 @@
                                 <td>{{ $usuario->nombre }}</td>
                                 <td>{{ $usuario->apellido }}</td>
                                 <td>{{ $usuario->email }}</td>
+                                <td>{{ $usuario->rol }}</td>
                                 <td>
                                     <a href="{{ route('admin.usuarios.destroy', $usuario->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></a>
                                 </td>

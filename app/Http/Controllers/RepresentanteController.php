@@ -21,18 +21,20 @@ class RepresentanteController extends Controller
     }
 
     public function authentificate (Request $request) {
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'rol' => 'Respresentante'])) {
-           return redirect()->route('/');
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'rol' => 'Admin'])) {
+            return redirect()->route('donaciones.index');
         }
         else{
-            if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'rol' => 'Admin'])) {
-               return redirect()->route('donaciones.index');
-            }
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+                return view('homepage');
+             }
         }
     }
 
     public function logout () {
         Auth::logout();
+
+        return view('homepage');
     }
 
 

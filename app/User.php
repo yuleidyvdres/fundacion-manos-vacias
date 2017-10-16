@@ -30,4 +30,8 @@ class User extends Authenticatable
     public function ninos(){
         return $this->hasMany('App\nino');
     }
+
+    public function tipoUsuario () {
+        return $this->rol === 'Admin';
+    }
 }

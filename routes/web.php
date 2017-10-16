@@ -11,15 +11,12 @@
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
-
 Route::get('/', function() {
     return view('homepage');
 });
 
 Auth::routes();
+$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -38,7 +35,7 @@ Route::get('Donar-perfil', function () {
 	return view('Donar-perfil-niño')->with('title','Perfil del Niño');
 });
 
-Route::resource('representante', 'RepresentanteController');
+
 Route::post('representante/auth', [
 	'uses' => 'RepresentanteController@authentificate',
 	'as'   => 'representante.auth'
@@ -47,8 +44,9 @@ Route::get('representante/logout', [
 	'uses' => 'RepresentanteController@logout',
 	'as'   => 'representante.logout'
 ]);
+Route::resource('representante', 'RepresentanteController');
 
-Route::group(['prefix' => 'admin'], function(){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(){
 	
 	/*Route::group(['prefix' => 'tipo-cancer'], function(){
 		Route::get('agregar', function (){

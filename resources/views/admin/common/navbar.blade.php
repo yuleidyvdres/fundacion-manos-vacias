@@ -57,6 +57,17 @@
           <li><a href="{{ url('/admin/usuarios/') }}">Listar</a></li>
         </ul>
       </li>
+      @if( Auth::check() )
+        <ul class="nav navbar-nav navbar-left" id="user-name">
+          <li class="dropdown ">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-o" aria-hidden="true"></i>
+            {{ Auth::user()->nombre }}<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="{{ url('/representante/logout') }}">Cerrar Sesión</a></li>
+            </ul>
+          </li>
+        </ul>
+      @endif
     </ul>
   </div>
 </nav>
