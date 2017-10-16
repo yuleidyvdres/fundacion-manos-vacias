@@ -39,6 +39,14 @@ Route::get('Donar-perfil', function () {
 });
 
 Route::resource('representante', 'RepresentanteController');
+Route::post('representante/auth', [
+	'uses' => 'RepresentanteController@authentificate',
+	'as'   => 'representante.auth'
+]);
+Route::get('representante/logout', [
+	'uses' => 'RepresentanteController@logout',
+	'as'   => 'representante.logout'
+]);
 
 Route::group(['prefix' => 'admin'], function(){
 	

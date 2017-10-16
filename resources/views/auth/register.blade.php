@@ -92,7 +92,7 @@ endsection-->
         <div class="col-xs-12 col-sm-offset-2 col-sm-4">
             <!--h3>Regístrate</h3-->
 
-            <form method="POST" class="form-horizontal" action="{{ route('register') }}" id="form-registrar">
+            <form method="POST" class="form-horizontal" action="{{ route('representante.store') }}" id="form-registrar">
                 {{ csrf_field() }}
 
                 <!-- Cédula -->
@@ -101,7 +101,7 @@ endsection-->
                         <span class="input-group-addon borde-inc" id="inputCedula">
                             <i class="fa fa-id-card-o" aria-hidden="true"></i>
                         </span>
-                        <input type="text" id="ci" name="ci" class="form-control borde" placeholder="Cédula" aria-describedby="inputCedula" required>
+                        <input type="text" id="id" name="id" class="form-control borde" placeholder="Cédula" aria-describedby="inputCedula" required>
                     </div>
                 </div>
                 <!-- Nombre -->
