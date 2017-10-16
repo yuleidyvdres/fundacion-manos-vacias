@@ -34,4 +34,10 @@ class User extends Authenticatable
     public function tipoUsuario () {
         return $this->rol === 'Admin';
     }
+
+    public function scopeApellido($query, $apellido){
+    	if (trim($apellido)!="") {
+    		$query->where("apellido","LIKE","%$apellido%");
+    	}
+    }
 }

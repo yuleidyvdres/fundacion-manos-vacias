@@ -10,8 +10,14 @@ class CancerController extends Controller
 {
      public function index(Request $request)
     {
-        $cancer=cancer::nombre($request->get('nombre'))->orderBy('id','ASC')->paginate(5);
-        return view('admin.cancer.listar')->with('cancer', $cancer);
+        $cancer=cancer::nombre($request->get('nombre'))->orderBy('id','ASC')->paginate(10);
+        if($cancer->count() > 0) {
+            return view ('admin.cancer.listar')->with('cancer', $cancer);
+        }
+        else {
+            flash('No se encontraron coincidencias ')->error()->important();
+            return redirect()->route('cancer.index');
+        }
     }
 
     /**

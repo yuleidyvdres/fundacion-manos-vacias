@@ -19,10 +19,6 @@ class cancer extends Model
     public function scopeNombre($query, $nombre){
     	if (trim($nombre)!="") {
     		$query->where("nombre","LIKE","%$nombre%");
-
-    		if ($query->count()==0) {
-    			flash('No se encontraron resultados de '. $nombre)->error()->important();
-    		}
     	}
     		
     }
