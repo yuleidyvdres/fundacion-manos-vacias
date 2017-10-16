@@ -37,7 +37,7 @@ class CancerController extends Controller
         $cancer->nombre=$request->cancer;
         $cancer->save();
 
-        flash('Se ha registrade '. $cancer->nombre . ' de forma exitosa')->success()->important();
+        flash('Se ha registrado '. $cancer->nombre . ' de forma exitosa')->success()->important();
         return redirect()->route('cancer.index');
     }
 

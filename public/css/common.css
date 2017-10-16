@@ -100,3 +100,22 @@
 .center {
     text-align: center;
 } 
+
+@media only screen and (max-width: 767px) {
+    div[class^='alert']{
+        width: 70%;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    div[class^='alert']{
+        width: 60%;
+    }
+ }
+
+ @media only screen and (min-width: 992px){
+    div[class^='alert']{
+        width: 40%;
+    }
+ }
+

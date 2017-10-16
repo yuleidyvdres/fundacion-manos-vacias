@@ -17,6 +17,7 @@ class UsuariosController extends Controller
         $usuarios->password = bcrypt($request->password);
         $usuarios->save();
 
+        flash('Se ha agregado el admin ' .$usuarios->nombre)->success()->important();
         return redirect()->route('usuarios.index');
     }
 
@@ -29,6 +30,7 @@ class UsuariosController extends Controller
         $usuario = User::find($id);
         $usuario->delete();
 
+        flash('Se ha eliminado al ' .$usuario->rol. ' '.$usuario->nombre)->error()->important();
         return redirect()->route('usuarios.index');
     }
 }

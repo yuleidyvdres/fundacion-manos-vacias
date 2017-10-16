@@ -12,6 +12,9 @@
             <h2 id="title-pag">Lista de Atributos Contacto</h2>
         </div>
     </section>
+    <center>
+        @include('flash::message')
+    </center>
     <section class="row">
         <div class="col-xs-12 col-sm-12 search">
             <form class="navbar-form form-width">

@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             <h3 class="modal-title" id="sesionLabel">Iniciar Sesión</h3>

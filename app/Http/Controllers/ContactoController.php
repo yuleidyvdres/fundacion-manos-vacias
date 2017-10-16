@@ -15,6 +15,7 @@ class ContactoController extends Controller
         $contacto = new contacto($request->all());
         $contacto->save();
 
+        flash('Se ha agregado el atributo contacto ' .$contacto->nombre)->success()->important();
         return redirect()->route('contacto.index');
     }
 
@@ -27,6 +28,7 @@ class ContactoController extends Controller
         $contacto = contacto::find($id);
         $contacto->delete();
 
+        flash('Se ha eliminado el atributo contacto ' .$contacto->nombre)->error()->important();
         return redirect()->route('contacto.index');
     }
 }

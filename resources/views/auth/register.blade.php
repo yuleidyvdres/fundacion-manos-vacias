@@ -91,7 +91,7 @@ endsection-->
     <section class="row">
         <div class="col-xs-12 col-sm-offset-2 col-sm-4">
             <!--h3>Regístrate</h3-->
-
+            @include('flash::message')
             <form method="POST" class="form-horizontal" action="{{ route('representante.store') }}" id="form-registrar">
                 {{ csrf_field() }}
 

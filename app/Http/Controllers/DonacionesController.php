@@ -15,6 +15,7 @@ class DonacionesController extends Controller
         $donacion = new donacion($request->all());
         $donacion->save();
 
+        flash('La donación '. $donacion->nombre .' se ha agregado de manera exitosa')->success()->important();
         return redirect()->route('donaciones.index');
 
     }
@@ -28,6 +29,7 @@ class DonacionesController extends Controller
         $donacion = donacion::find($id);
         $donacion->delete();
 
+        flash('Se ha eliminado '. $donacion->nombre)->error()->important();
         return redirect()->route('donaciones.index');
     }
 }

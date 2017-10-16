@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laracasts\Flash\Flash;
 use App\User;
 
 class RepresentanteController extends Controller
@@ -17,6 +18,7 @@ class RepresentanteController extends Controller
         $representante->password = bcrypt($request->password);
         $representante->save();
 
+        flash('Se ha registrado '. $representante->nombre . ' de forma exitosa')->success()->important();
         return redirect()->route('representante.create');
     }
 
@@ -27,7 +29,11 @@ class RepresentanteController extends Controller
         else{
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
                 return view('homepage');
-             }
+            }
+            else {
+                flash('Credenciales incorrectas')->error()->important();
+                return view('homepage');
+            }
         }
     }
 
