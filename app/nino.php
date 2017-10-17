@@ -22,7 +22,7 @@ class nino extends Model
 
     public function donaciones(){
         return $this->belongsToMany('App\donacion', 'nino-donacion','nino_id','donaciones_id')
-                                    ->withPivot('status','urgencia','descripcion','comentario')
+                                    ->withPivot('status','urgencia','descripcion','comentario','cantidad')
                                     ->withTimestamps();
     }
 
