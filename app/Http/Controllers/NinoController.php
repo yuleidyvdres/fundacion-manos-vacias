@@ -15,6 +15,20 @@ class NinoController extends Controller
       return view('Nino.Ninos')->with('title', 'Perfil Niños');
     }
 
+     public function donacion_publica()
+    {
+       $nino=nino::all();  
+       $nino->each(function($nino){
+            $nino->user;
+       });
+       return view('Donacion')->with('title', 'Donaciones')->with('nino', $nino);;
+    }
+    public function perfil_publico(Request $request)
+    {
+       $nino=nino::find($request->get('id'));  
+       return view('Nino.Donar-perfil-niño')->with('title', 'Perfil-Público')->with('nino', $nino);;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

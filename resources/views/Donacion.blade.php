@@ -20,18 +20,18 @@
          </div>    
         </div>
         <div class="row">
-            <div class="col-sm-4">@include('template.Donar-niño.Ficha-niño') @include('template.Donar-niño.Ficha-niño')</div>
-            <div class="col-sm-4">@include('template.Donar-niño.Ficha-niño') @include('template.Donar-niño.Ficha-niño')</div>
-            <div class="col-sm-4">@include('template.Donar-niño.Ficha-niño') @include('template.Donar-niño.Ficha-niño')</div>
+           @foreach($nino as $nin)  
+            <div class="col-sm-4">@include('Nino.template.Donar-niño.Ficha-niño')</div>
+           @endforeach
         </div> 
     </div>
 	
 	@include('layouts.common.footer')
 @endsection
 @section('scripts')
-	<script src="{{ asset('js/pacientes.js') }}"></script>
-	<script>
-        $(document).ready(function () {
+    <script src="{{ asset('js/pacientes.js') }}"></script>
+    <script>
+      $(document).ready(function () {
             $("#botonIniciar").click (function () {
                 $("#iniciarSesion").modal();
             });
