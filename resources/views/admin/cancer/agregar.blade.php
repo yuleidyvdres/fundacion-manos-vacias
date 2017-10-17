@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Submit" class="btn btn-default btn-lg btn-submit">
+                        <input type="submit" value="Guardar" class="btn btn-default btn-lg btn-submit">
                     </div>
                 </form>
          

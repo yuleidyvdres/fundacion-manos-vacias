@@ -20,13 +20,48 @@ $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('Niños', function () {
+/*Route::get('Niños', function () {
 	return view('Niños')->with('title','Perfil del Niño');
 });
-
 Route::get('Niños2', function () {
 	return view('Niños2')->with('title','Perfil del Niño');
 });
+*/
+
+Route::group(['prefix' => 'Perfil'], function(){
+	Route::resource('Niño','NinoController');
+//-----------------------------------------------------------
+	Route::get('Niño/create-cancer',[
+				'uses'=>'NinoController@create_cancer',
+				'as'=>'Niño.create_cancer'
+	]);
+
+	Route::get('Niño/create-contacto',[
+				'uses'=>'NinoController@create_contacto',
+				'as'=>'Niño.create_contacto'
+	]);
+
+	Route::get('Niño/create-donacion',[
+				'uses'=>'NinoController@create_donacion',
+				'as'=>'Niño.create_donacion'
+	]);
+//-------------------------------------------------------
+	Route::post('Niño/store-cancer',[
+				'uses'=>'NinoController@store_cancer',
+				'as'=>'Niño.store_cancer'
+    ]);	
+    Route::post('Niño/store-contacto',[
+				'uses'=>'NinoController@store_contacto',
+				'as'=>'Niño.store_contacto'
+    ]);	
+    Route::post('Niño/store-donacion',[
+				'uses'=>'NinoController@store_donacion',
+				'as'=>'Niño.store_donacion'
+    ]);	
+
+});
+
+
 
 Route::get('Donacion', function () {
 	return view('Donacion')->with('title','Perfil del Niño');
@@ -48,11 +83,13 @@ Route::resource('representante', 'RepresentanteController');
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(){
 
 	Route::group(['prefix' => 'tipo-cancer'], function(){
+
 		Route::resource('cancer','CancerController');
 		Route::get('cancer/{id}/destroy',[
 				'uses'=>'CancerController@destroy',
 				'as'=>'cancer.destroy'
-		]);
+		]);	
+
 	});
 
 	Route::get('/contacto/{id}/destroy', [

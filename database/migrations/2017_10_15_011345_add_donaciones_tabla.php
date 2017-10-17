@@ -26,6 +26,7 @@ class AddDonacionesTabla extends Migration
             $table->enum('urgencia',['Baja','Mediana','Alta']);
             $table->string('descripcion')->nullable();
             $table->string('comentario')->nullable();
+            $table->integer('cantidad');
             $table->integer('donaciones_id')->unsigned();
             $table->integer('nino_id');
 
