@@ -20,7 +20,7 @@ class AddNinosTabla extends Migration
             $table->enum('genero',['Niño','Niña']);
             $table->date('fecha_nacimiento');
             $table->string('situacion_actual');
-            $table->string('users_id');
+            $table->integer('users_id');
 
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
 
