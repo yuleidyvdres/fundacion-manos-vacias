@@ -17,7 +17,7 @@ class AddBitacoraTabla extends Migration
             $table->increments('id');
             $table->string('email',30);
             $table->ipAddress('ip');
-            $table->date('fecha');
+            $table->dateTimeTz('fecha');
             $table->string('accion');
             $table->timestamps();
         });
