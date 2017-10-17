@@ -27,7 +27,7 @@
         <p><img src="{{asset('imagenes/cinta.png')}}" alt="Logo-carcer-infantil">
         AMV</p>
       </a>
-    </div>
+    </div> 
     <ul class="nav navbar-nav">
       <li class="{{ Request::is('/') ? 'active' : null }}"><a href="{{ url('/') }}">Inicio</a></li>
       @if(Auth::check())

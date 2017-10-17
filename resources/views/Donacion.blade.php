@@ -3,7 +3,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/donacion.css') }}">
 	<link href="{{ asset('css/login.css') }}" rel="stylesheet">
     <link href="{{ asset('css/common.css') }}" rel="stylesheet">
-    
+     
 @endsection
 
 @section('content')
@@ -20,9 +20,9 @@
          </div>    
         </div>
         <div class="row">
-            <div class="col-sm-4">@include('template.Donar-niño.Ficha-niño') @include('template.Donar-niño.Ficha-niño')</div>
-            <div class="col-sm-4">@include('template.Donar-niño.Ficha-niño') @include('template.Donar-niño.Ficha-niño')</div>
-            <div class="col-sm-4">@include('template.Donar-niño.Ficha-niño') @include('template.Donar-niño.Ficha-niño')</div>
+            <div class="col-sm-4">@include('Nino.template.Donar-niño.Ficha-niño') @include('Nino.template.Donar-niño.Ficha-niño')</div>
+            <div class="col-sm-4">@include('Nino.template.Donar-niño.Ficha-niño') @include('Nino.template.Donar-niño.Ficha-niño')</div>
+            <div class="col-sm-4">@include('Nino.template.Donar-niño.Ficha-niño') @include('Nino.template.Donar-niño.Ficha-niño')</div>
         </div> 
     </div>
 	
