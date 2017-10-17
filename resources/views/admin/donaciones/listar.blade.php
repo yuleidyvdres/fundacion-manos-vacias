@@ -12,15 +12,20 @@
             <h2 id="title-pag">Lista de Donaciones</h2>
         </div>
     </section>
+    <center>
+        @include('flash::message')
+    </center>
     <section class="row">
+        @include('flash::message')
         <div class="col-xs-12 col-sm-12 search">
-            <form class="navbar-form form-width">
+            <form class="navbar-form form-width" method="POST" action="{{ route('admin.donaciones.search') }}">
+                {{ csrf_field() }}
                 <div class="form-group">
-                    <input type="text" class="form-control border-inp" placeholder="Buscar Nombre">
+                    <input type="text" name="nombre" class="form-control border-inp" placeholder="Buscar Nombre">
                 </div>
-                <button type="submit" class="btn btn-default btn-search">
-                    <i class="fa fa-search" aria-hidden="true"></i> 
-                </button>
+                <div class="form-group">
+                    <input type="submit" value="Buscar" class="btn btn-default btn-md btn-submit">
+                </div>
             </form>
         </div>
     </section>
@@ -37,56 +42,19 @@
                         </tr>
                     </thead> 
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td> Glucofage</td>
-                            <td>Medicamento</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td> Glucofage</td>
-                            <td>Medicamento</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td> Glucofage</td>
-                            <td>Medicamento</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td> Glucofage</td>
-                            <td>Medicamento</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td> Glucofage</td>
-                            <td>Medicamento</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td> Glucofage</td>
-                            <td>Medicamento</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
+                        @foreach($donaciones as $donacion)
+                            <tr>
+                                <td>{{ $donacion->id }}</td>
+                                <td>{{ $donacion->nombre }}</td>
+                                <td>{{ $donacion->tipo }}</td>
+                                <td>
+                                    <a href="{{ route('admin.donacion.destroy', $donacion->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
+                {!! $donaciones->render() !!}
             </center>
         </div>
     </section>

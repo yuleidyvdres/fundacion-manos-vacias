@@ -15,4 +15,10 @@ class donacion extends Model
                                     ->withPivot('status','urgencia','descripcion','comentario','cantidad')
                                     ->withTimestamps();
     }
+
+    public function scopeNombre($query, $nombre){
+    	if (trim($nombre)!="") {
+    		$query->where("nombre","LIKE","%$nombre%");
+    	}	
+    }
 }

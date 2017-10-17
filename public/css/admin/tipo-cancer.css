@@ -34,6 +34,15 @@ table, thead tr th {
     color: #fff;
 }
 
+.pagination>.active>span {
+    background-color: #00ced1;
+    border-color: #00ced1;
+}
+
+.pagination>li>a, .pagination>li>span {
+    color: #000;
+}
+
 @media only screen and (max-width: 767px) {
     #title-pag {
         font-size: 1.5em;
