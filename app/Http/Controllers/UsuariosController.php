@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Events\UserEvent;
+use App\Http\Requests\UserRequest;
 use App\User;
 
 class UsuariosController extends Controller
@@ -11,14 +13,23 @@ class UsuariosController extends Controller
         return view('admin.usuarios.agregar')->with('title', 'Agregar Usuario');
     }
 
-    public function store (Request $request) {
+    public function store (UserRequest $request) {
         $usuarios = new User($request->all());
         $usuarios->rol = 'Admin';
         $usuarios->password = bcrypt($request->password);
-        $usuarios->save();
 
-        flash('Se ha agregado el admin ' .$usuarios->nombre)->success()->important();
-        return redirect()->route('usuarios.index');
+        $confirm = User::find($usuarios->id);
+        if(!$confirm) {
+            $usuarios->save();
+            event(new UserEvent($usuarios));
+            flash('Se ha agregado el administrador ' .$usuarios->nombre)->success()->important();
+            return redirect()->route('usuarios.index');
+        } 
+        else {
+            flash('El administrador ' .$usuarios->id. ' ya existe')->error()->important();
+            return redirect()->route('usuarios.create');
+        }
+            
     }
 
     public function index () {
