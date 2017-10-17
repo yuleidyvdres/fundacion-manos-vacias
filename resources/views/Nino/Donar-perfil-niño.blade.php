@@ -8,9 +8,9 @@
 
 @section('content')
     @include('layouts.common.navbar')
-    <div class="container-fluid">
-    @include('template.Donar-niño.donar-perfil1') 
-    @include('template.Donar-niño.donar-perfil2')  
+    <div class="container">
+    @include('Nino.template.Donar-niño.donar-perfil1') 
+    @include('Nino.template.Donar-niño.donar-perfil2')  
     </div>
 	
 	@include('layouts.common.footer')

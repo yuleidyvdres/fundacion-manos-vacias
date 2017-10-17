@@ -1,34 +1,36 @@
      <!-- Datos Personales-->	
 <div class="row perfil1">
 		<center>
-			<h3>Nombre Completo Niño</h3>
-			<p>Situación Actual: Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Molestiae ullam eveniet officiis it amet consectetur adipisicing elit.
-            Molestiae ul</p>
+			<h3>{{$nino->nombre}} {{$nino->apellido}}</h3>
+			<p>{{$nino->situacion_actual}}</p>
 		</center> 
     <hr>
 	  <div class="col-sm-4 pc1"><!-- Datos Personales-->
-				<h4>Edad: </h4>
-				<p>10</p>
+				<h4>Fecha de Nacimiento:</h4>
+				<p>{{$nino->fecha_nacimiento}}</p>
 				<h4>Estado: </h4>
-				<p>Barinas</p>
-				<h4>Parroquia:</h4>
-				<p>Barinas</p>
+				 @foreach($nino->contactos as $aux)
+	              <?php if ($aux->nombre=='Estado') {?>
+	                <p> {{$aux->pivot->valor}} </p>
+	              <?php }?>  
+	             @endforeach
+				<h4>Municipio:</h4>
+				 @foreach($nino->contactos as $aux)
+	              <?php if ($aux->nombre=='Municipio') {?>
+	                <p> {{$aux->pivot->valor}} </p>
+	             <?php }?>  
+	             @endforeach
 	 </div>
 	<div class="col-sm-4 pc2"><!-- Datos Cancer-->
 				<h4>Tipo de Cáncer</h4>
-                <p>Leucemia</p>
-                <p>Cáncer infantil</p>
+                @foreach($nino->cancers as $aux)
+                   <p> {{$aux->nombre}} </p>
+           		@endforeach
 				<h4>Fecha de Diagnóstico</h4>
-				<p>2/7/2015</p>
-				<h4>Etapa del cáncer</h4>
-				<div style="width:50%">
-					<div class="progress">
-						<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" style="width:35%">
-							Etapa I
-						</div>
-					</div>
-				</div>	 
+				 @foreach($nino->cancers as $aux)
+                	<p> {{$aux->pivot->fecha_deteccion}} </p>
+                 @endforeach
+					 
 	</div><!-- Fin-->
 	<div class="col-sm-4 pc3"> <!-- Datos Contacto-->
 		  	<div class="table-responsive">

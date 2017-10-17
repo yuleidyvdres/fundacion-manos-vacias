@@ -20,16 +20,10 @@ $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-/*Route::get('Niños', function () {
-	return view('Niños')->with('title','Perfil del Niño');
-});
-Route::get('Niños2', function () {
-	return view('Niños2')->with('title','Perfil del Niño');
-});
-*/
 
 Route::group(['prefix' => 'Perfil'], function(){
 	Route::resource('Niño','NinoController');
+//------------------- Formulario Ninos ---------------------
 //-----------------------------------------------------------
 	Route::get('Niño/create-cancer',[
 				'uses'=>'NinoController@create_cancer',
@@ -58,16 +52,19 @@ Route::group(['prefix' => 'Perfil'], function(){
 				'uses'=>'NinoController@store_donacion',
 				'as'=>'Niño.store_donacion'
     ]);	
+    //--------------------------------------------------  
+});//fin grupo rutas ninno
 
-});
-
-
-
-Route::get('Donacion', function () {
-	return view('Donacion')->with('title','Perfil del Niño');
-});
-Route::get('Donar-perfil', function () {
-	return view('Donar-perfil-niño')->with('title','Perfil del Niño');
+Route::group(['prefix' => 'Donacion'], function(){
+ //----------------Donacion Parte publica -----------
+    Route::get('Niño/donacion-publica',[
+				'uses'=>'NinoController@donacion_publica',
+				'as'=>'Niño.donacion_publica'
+	]);
+	 Route::get('Niño/Perfil-publico',[
+				'uses'=>'NinoController@perfil_publico',
+				'as'=>'Niño.perfil_publico'
+	]);
 });
 
 Route::post('representante/auth', [
