@@ -15,7 +15,7 @@ class AddDonacionesTabla extends Migration
     {
         Schema::create('donaciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre',30)->unique();
+            $table->string('nombre',100)->unique();
             $table->enum('tipo',['Medicamento','Insumo']);
             $table->timestamps();
         });

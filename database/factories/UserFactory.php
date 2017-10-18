@@ -27,26 +27,3 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(App\donacion::class, function (Faker $faker) {
-
-    $nombre = [
-        "Ibritumomab 10mg",
-        "Ibritumomab 50mg",
-        "Ibritumomab 100mg",
-        "Rituximab 2mg",
-        "Rituximab 4mg",
-        "Rituximab 6mg",
-        "Tositumomab 100mg",
-        "Tositumomab 500mg",
-        "Trastuzumab 100mg"
-    ];
-
-    $tipo = [
-        "Medicamento",
-        "Insumo"
-    ];
-    return [
-        'nombre' => $nombre[array_rand($nombre)],
-        'tipo' => $tipo[array_rand($tipo)],
-    ];
-});
