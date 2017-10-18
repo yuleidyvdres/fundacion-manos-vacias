@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\DonacionRequest;
 use App\Events\UserEvent;
 use App\donacion;
 use App\User;
@@ -15,7 +15,7 @@ class DonacionesController extends Controller
         return view('admin.donaciones.agregar')->with('title', 'Agregar Donación');
     }
 
-    public function store (Request $request) {
+    public function store (DonacionRequest $request) {
         $donacion = new donacion($request->all());
         $donacion->save();
         $user = new User();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Events\UserEvent;
+use App\Http\Requests\ContactoRequest;
 use App\contacto;
 use App\User;
 
@@ -13,7 +14,7 @@ class ContactoController extends Controller
         return view('admin.contacto.agregar')->with('title', 'Agregar Donación');
     }
 
-    public function store (Request $request) {
+    public function store (ContactoRequest $request) {
         $contacto = new contacto($request->all());
         $contacto->save();
         $user = new User();
