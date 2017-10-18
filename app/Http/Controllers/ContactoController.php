@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Events\UserEvent;
 use App\contacto;
+use App\User;
 
 class ContactoController extends Controller
 {
@@ -14,7 +16,9 @@ class ContactoController extends Controller
     public function store (Request $request) {
         $contacto = new contacto($request->all());
         $contacto->save();
-
+        $user = new User();
+        
+        event(new UserEvent($user, 'Agregar contacto'));
         flash('Se ha agregado el atributo contacto ' .$contacto->nombre)->success()->important();
         return redirect()->route('contacto.index');
     }
@@ -27,7 +31,9 @@ class ContactoController extends Controller
     public function destroy ($id) {
         $contacto = contacto::find($id);
         $contacto->delete();
+        $user = new User();
 
+        event(new UserEvent($user, 'Eliminar contacto'));
         flash('Se ha eliminado el atributo contacto ' .$contacto->nombre)->error()->important();
         return redirect()->route('contacto.index');
     }

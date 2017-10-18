@@ -21,7 +21,7 @@ class UsuariosController extends Controller
         $confirm = User::find($usuarios->id);
         if(!$confirm) {
             $usuarios->save();
-            event(new UserEvent($usuarios));
+            event(new UserEvent($usuarios, 'Agregar usuario'));
             flash('Se ha agregado el administrador ' .$usuarios->nombre)->success()->important();
             return redirect()->route('usuarios.index');
         } 
@@ -41,6 +41,7 @@ class UsuariosController extends Controller
         $usuario = User::find($id);
         $usuario->delete();
 
+        event(new UserEvent($usuario, 'Eliminar usuario'));
         flash('Se ha eliminado al ' .$usuario->rol. ' '.$usuario->nombre)->error()->important();
         return redirect()->route('usuarios.index');
     }

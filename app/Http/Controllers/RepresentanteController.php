@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laracasts\Flash\Flash;
-use App\Http\Reuqets\UserRequest;
+use App\Http\Requests\UserRequest;
+use App\Events\UserEvent;
 use App\User;
 
 class RepresentanteController extends Controller
@@ -21,8 +22,8 @@ class RepresentanteController extends Controller
         $confirm = User::find($representante->id);
         if(!$confirm) {
             $representante->save();
-            event(new UserEvent($representante));
-            flash('Se ha agregado el administrador ' .$representante->nombre)->success()->important();
+            event(new UserEvent($representante, 'Agregar usuario'));
+            flash('Se ha agregado el usuario ' .$representante->nombre)->success()->important();
             return redirect()->route('representante.create');
         } 
         else {

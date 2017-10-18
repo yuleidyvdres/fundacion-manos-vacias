@@ -92,6 +92,16 @@ endsection-->
         <div class="col-xs-12 col-sm-offset-2 col-sm-4">
             <!--h3>Regístrate</h3-->
             @include('flash::message')
+
+            @if($errors->count() > 0)
+                <div class="alert alert-danger" role="lert">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form method="POST" class="form-horizontal" action="{{ route('representante.store') }}" id="form-registrar">
                 {{ csrf_field() }}
 
