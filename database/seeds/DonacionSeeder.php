@@ -63,13 +63,13 @@ class DonacionSeeder extends Seeder
             "Insumo"
         ];
         
-        for($i=0; $i<20; $i++) {
+        for($i=0; $i<count($medicamentos); $i++) {
             DB::table('donaciones')->insert([
                 'nombre' => $medicamentos[$i],
                 'tipo' => $tipo[0]
             ]);
         }
-        for($i=0; $i<20; $i++) {
+        for($i=0; $i<count($insumos); $i++) {
             DB::table('donaciones')->insert([
                 'nombre' => $insumos[$i],
                 'tipo' => $tipo[1]
