@@ -17,11 +17,11 @@ class NinoController extends Controller
 
      public function donacion_publica()
     {
-       $nino=nino::all();  
+       $nino=nino::orderBy('id','ASC')->paginate(6);  
        $nino->each(function($nino){
             $nino->user;
        });
-       return view('Donacion')->with('title', 'Donaciones')->with('nino', $nino);;
+       return view('Donacion')->with('title', 'Donaciones')->with('nino', $nino);
     }
     public function perfil_publico(Request $request)
     {
@@ -49,9 +49,11 @@ class NinoController extends Controller
     public function create_cancer(Request $request)
     {
       $cancer=cancer::orderBY('nombre','ASC')->pluck('nombre','id');
+      $nino=nino::find($request->get('id'));
       return view('Nino.cancer-nino')->with('title', 'Perfil Niños')
             ->with('cancer',$cancer)
-            ->with('partida',$request->get('id'));
+            ->with('partida',$request->get('id'))
+            ->with('nacimiento',$nino->fecha_nacimiento);
 
     }
      public function create_contacto(Request $request)
@@ -100,10 +102,11 @@ class NinoController extends Controller
     public function store_cancer(Request $request)
     {
         $nino= nino::find($request->partida);
+        $cancer=cancer::find($request->Tipo_cancer);
         //-------------- Tipo Cancer 
         $nino->cancers()->attach($request->Tipo_cancer, ['fecha_deteccion' => $request->Fecha_inicio_cancer]);
 
-        flash('Se ha registrade '. $request->Tipo_cancer. ' de forma exitosa')->success()->important();
+        flash('Se ha registrade '. $cancer->nombre . ' de forma exitosa')->success()->important();
         return redirect()->route('Niño.create_cancer',['id' => $request->partida]);
      
 
@@ -111,18 +114,20 @@ class NinoController extends Controller
     public function store_contacto(Request $request)
     {
          $nino= nino::find($request->partida);
+         $contacto=contacto::find($request->Tipo_contacto);
          $nino->contactos()->attach($request->Tipo_contacto, ['valor' =>$request->valor_cont]);
-         flash('Se ha registrade '. $request->Tipo_contacto. ' de forma exitosa')->success()->important();
+         flash('Se ha registrade '. $contacto->nombre. ' de forma exitosa')->success()->important();
         return redirect()->route('Niño.create_contacto',['id' => $request->partida]);
         
     }
     public function store_donacion(Request $request)
     {
         $nino= nino::find($request->partida);
+        $donacion=donacion::find($request->Donacion);
         //-------------- Donaciones
          $nino->donaciones()->attach($request->Donacion, ['status' => 'No-recibido', 'urgencia' => $request->Urgencia,'descripcion'=>$request->DP, 'cantidad'=>$request->cantidad]);
 
-        flash('Se ha registrade '. $request->Donacion. ' de forma exitosa')->success()->important();
+        flash('Se ha registrade '. $donacion->nombre. ' de forma exitosa')->success()->important();
         return redirect()->route('Niño.create_donacion',['id' => $request->partida]);
     }
 

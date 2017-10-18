@@ -10,7 +10,7 @@
     
         <div class="col-sm-8">
             <h2>{{$nin->nombre}} {{$nin->apellido}}</h2>
-            <p>{{$nin->situacion_actual}}</p>
+            <p>{{ substr($nin->situacion_actual, 0, 25) }} ...</p>
         </div>
   </div>
   <hr>
@@ -21,8 +21,11 @@
             <h4>Municipio:</h4>
              <hr>
             <h4>Tipo de Cáncer</h4>
+            <?php $var=0; ?>
             @foreach($nin->cancers as $aux)
-                <p> {{$aux->nombre}} </p>
+              <?php if ($var==0) { $var++;?>
+                <p> {{$aux->nombre}} </p> 
+               <?php } ?> 
             @endforeach
         </div>
         <div class="col-sm-6">
@@ -33,7 +36,7 @@
             @foreach($nin->contactos as $aux)
               <?php if ($aux->nombre=='Estado') {?>
                 <p> {{$aux->pivot->valor}} </p>
-             <?php }?>  
+             <?php } ?>  
             @endforeach
 
             @foreach($nin->contactos as $aux)
@@ -43,19 +46,24 @@
             @endforeach
             <hr>
             <h4 style="color:#004E89;">Diagnóstico</h4>
+            <?php $var=0; ?>
             @foreach($nin->cancers as $aux)
-                <p> {{$aux->pivot->fecha_deteccion}} </p>
+             <?php if ($var==0) { $var++;?>
+                <p> {{$aux->pivot->fecha_deteccion}} </p>  
+              <?php } ?>
             @endforeach
         </div>
   </div>
     <div >
       <center> 
+        <?php $var=0; ?>
        @foreach($nin->donaciones as $aux)
-          <?php if ($aux->pivot->urgencia=='Alta') {?>
+          <?php if ($aux->pivot->urgencia=='Alta' and $var==0) { $var++;?>
            <h4 style="color:#FF2714;"><b>Se necesita Donacion Urgente</b></h4>
-          <?php }else{ ?>
+          <?php }else{  
+            if($var==0){ $var++; ?>
            <h4>Haz Feliz a un Niño, ¡Ayuda!</h4>
-         <?php }?>
+         <?php }} ?>
        @endforeach
       </center>
     </div>

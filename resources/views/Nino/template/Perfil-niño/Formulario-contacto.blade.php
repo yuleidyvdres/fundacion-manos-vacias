@@ -28,7 +28,13 @@
 					        <span class="borde-inc input-group-addon">
 								<i class="fa fa-pencil" aria-hidden="true"></i>
 							</span>
-							<input type="text" class="borde form-control" id="valor_cont" name="valor_cont" placeholder="Valor" required>
+							<?php if ($contacto=="Telefono") { ?>
+								<input type="text" class="borde form-control" id="valor_cont" name="valor_cont" placeholder="Valor"  minlength="11" maxlength="11" required>
+							<?php } else{ ?>
+								<input type="text" class="borde form-control" id="valor_cont" name="valor_cont" placeholder="Valor" required>
+							<?php }  
+							// ^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$ -> Email?>
+							
 					    </div>
 					</div>
 				</div> 

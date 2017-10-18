@@ -30,7 +30,9 @@
 						<span class="input-group-addon borde-inc" id="input-fecha-diag">
 	             <i class="fa fa-calendar" aria-hidden="true"></i>
 	          </span>
-			      <input type="date" class="borde form-control" id="Fecha_inicio_cancer" name="Fecha_inicio_cancer" placeholder="Fecha de Diagnóstico del Cáncer" required>
+			      <input type="date" class="borde form-control" id="Fecha_inicio_cancer" name="Fecha_inicio_cancer" placeholder="Fecha de Diagnóstico del Cáncer" required
+				   min={{$nacimiento}}
+			      >
 			    </div>
 			  </div>
 			</div>

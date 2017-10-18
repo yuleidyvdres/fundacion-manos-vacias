@@ -7,7 +7,7 @@
 
 @section('content')
 	@include('layouts.common.navbar')
-	@include('flash::message')
+	<center>@include('flash::message')</center>
 	@include('Nino.template.Perfil-niño.Formulario-cancer')
 	@include('layouts.common.footer')
 @endsection

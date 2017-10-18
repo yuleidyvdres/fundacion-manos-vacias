@@ -35,13 +35,13 @@
 				      <span class="borde-inc input-group-addon">
 								<i class="fa fa-bars" aria-hidden="true"></i>
 							</span>
-				      <textarea class="form-control" rows="3" id="DP" name="DP" placeholder="Descripción del Producto" required></textarea>
+				      <textarea class="form-control" rows="3" id="DP" name="DP" placeholder="Descripción del Producto"></textarea>
 				    </div></br>
 				    <div class="input-group input-group-md input-capsule" style="width: 100%; padding: 10px;"><!-- Urgencia -->
 					  	<label for="Avance-Cancer" style="text-align: left; width: 100%;">Urgencia</label>
 					  	<select class="form-control" id="Urgencia" name="Urgencia" required>
 									<option>Baja</option>
-									<option>Media</option>
+									<option>Mediana</option>
 									<option>Alta</option>
 						</select>
 					</div></br>
