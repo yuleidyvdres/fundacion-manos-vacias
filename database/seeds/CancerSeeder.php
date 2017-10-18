@@ -13,10 +13,12 @@ class CancerSeeder extends Seeder
     {
         $tipo_cancer = [
             'Leucemia',
-            'Cáncer de boca',
-            'Cáncer de hígado',
-            'Cáncer de páncreas',
-            'Cáncer de estómago'
+            'Tumor Sistema Nervioso Central',
+            'Tumor óseo',
+            'Linfoma',
+            'Rabdomiosarcoma',
+            'Tumor de Wilms',
+            'Retinoblastoma'
         ];
 
         $i = 0;
