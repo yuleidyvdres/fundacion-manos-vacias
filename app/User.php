@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'id','nombre','apellido', 'email', 'password','rol'
     ];
 
     /**
@@ -26,4 +26,18 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function ninos(){
+        return $this->hasMany('App\nino');
+    }
+
+    public function tipoUsuario () {
+        return $this->rol === 'Admin';
+    }
+
+    public function scopeApellido($query, $apellido){
+    	if (trim($apellido)!="") {
+    		$query->where("apellido","LIKE","%$apellido%");
+    	}
+    }
 }

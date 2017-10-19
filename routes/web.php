@@ -11,72 +11,111 @@
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
-
 Route::get('/', function() {
-    return view('homepage');
+    return view('homepage'); 
 });
 
 Auth::routes();
+$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('Niños', function () {
-	return view('Niños')->with('title','Perfil del Niño');
-});
 
-Route::get('Niños2', function () {
-	return view('Niños2')->with('title','Perfil del Niño');
-});
+Route::group(['prefix' => 'Perfil', 'middleware' => ['auth']], function(){
+	Route::resource('Niño','NinoController');
+//------------------- Formulario Ninos ---------------------
+//-----------------------------------------------------------
+	Route::get('Niño/create-cancer',[
+				'uses'=>'NinoController@create_cancer',
+				'as'=>'Niño.create_cancer'
+	]);
 
-Route::get('Donacion', function () {
-	return view('Donacion')->with('title','Perfil del Niño');
-});
-Route::get('Donar-perfil', function () {
-	return view('Donar-perfil-niño')->with('title','Perfil del Niño');
-});
+	Route::get('Niño/create-contacto',[
+				'uses'=>'NinoController@create_contacto',
+				'as'=>'Niño.create_contacto'
+	]);
 
-Route::group(['prefix' => 'admin'], function(){
+	Route::get('Niño/create-donacion',[
+				'uses'=>'NinoController@create_donacion',
+				'as'=>'Niño.create_donacion'
+	]);
+//-------------------------------------------------------
+	Route::post('Niño/store-cancer',[
+				'uses'=>'NinoController@store_cancer',
+				'as'=>'Niño.store_cancer'
+    ]);	
+    Route::post('Niño/store-contacto',[
+				'uses'=>'NinoController@store_contacto',
+				'as'=>'Niño.store_contacto'
+    ]);	
+    Route::post('Niño/store-donacion',[
+				'uses'=>'NinoController@store_donacion',
+				'as'=>'Niño.store_donacion'
+    ]);	
+    //--------------------------------------------------  
+});//fin grupo rutas ninno
+
+Route::group(['prefix' => 'Donacion'], function(){
+ //----------------Donacion Parte publica -----------
+    Route::get('Niño/donacion-publica',[
+				'uses'=>'NinoController@donacion_publica',
+				'as'=>'Niño.donacion_publica'
+	]);
+	 Route::get('Niño/Perfil-publico',[
+				'uses'=>'NinoController@perfil_publico',
+				'as'=>'Niño.perfil_publico'
+	]);
+});
+//------------------------ Representante --------------------------- 
+Route::post('representante/auth', [
+	'uses' => 'RepresentanteController@authentificate',
+	'as'   => 'representante.auth'
+]);
+Route::get('representante/logout', [
+	'uses' => 'RepresentanteController@logout',
+	'as'   => 'representante.logout'
+]);
+Route::resource('representante', 'RepresentanteController');
+//------------------------- Administrador -----------------------------
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(){
 
 	Route::group(['prefix' => 'tipo-cancer'], function(){
-		Route::get('agregar', function (){
-			return view('admin.cancer.agregar')->with('title', 'Tipo de Cáncer');
-		});
-	
-		Route::get('listar', function(){
-			return view('admin.cancer.listar')->with('title', 'Lista Tipo de Cáncer');
-		});
+
+		Route::resource('cancer','CancerController');
+		Route::get('cancer/{id}/destroy',[
+				'uses'=>'CancerController@destroy',
+				'as'=>'cancer.destroy'
+		]);	
+
 	});
 
-	Route::group(['prefix' => 'contacto'], function(){
-		Route::get('agregar', function (){
-			return view('admin.contacto.agregar')->with('title', 'Agregar Atributo Contacto');
-		});
-	
-		Route::get('listar', function(){
-			return view('admin.contacto.listar')->with('title', 'Lista Atributos Contacto');
-		});
-	});
-	
-	Route::group(['prefix' => 'donaciones'], function(){
-		Route::get('agregar', function (){
-			return view('admin.donaciones.agregar')->with('title', 'Agregar Donación');
-		});
+	Route::get('/contacto/{id}/destroy', [
+		'uses' => 'ContactoController@destroy',
+		'as'   => 'admin.contacto.destroy'
+	]);
+	Route::post('/contacto/search', [
+		'uses' => 'ContactoController@search',
+		'as'   => 'admin.contacto.search'
+	]);
+	Route::resource('contacto', 'ContactoController');
 
-		Route::get('listar', function (){
-			return view('admin.donaciones.listar')->with('title', 'Listado Donación');
-		});
-	});
-	
-	Route::group(['prefix' => 'usuarios'], function(){
-		Route::get('agregar', function (){
-			return view('admin.usuarios.agregar')->with('title', 'Agregar Usuario');
-		});
+	Route::get('/donacion/{id}/destroy', [
+		'uses' => 'DonacionesController@destroy',
+		'as'   => 'admin.donacion.destroy'
+	]);
+	Route::post('/donacion/search', [
+		'uses' => 'DonacionesController@search',
+		'as'   => 'admin.donaciones.search'
+	]);
+	Route::resource('donaciones', 'DonacionesController');
 
-		Route::get('listar', function (){
-			return view('admin.usuarios.listar')->with('title', 'Listado Usuarios');
-		});
-	});
+	Route::get('/usuario/{id}/destroy', [
+		'uses' => 'UsuariosController@destroy',
+		'as'   => 'admin.usuarios.destroy'
+	]);
+	Route::post('/usuarios/search', [
+		'uses' => 'UsuariosController@search',
+		'as'   => 'admin.usuarios.search'
+	]);
+	Route::resource('usuarios', 'UsuariosController');
 });

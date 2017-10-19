@@ -32,31 +32,42 @@
       <li class="dropdown {{ Request::is('admin/tipo-cancer*') ? 'active' : null }}">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tipo de Cáncer <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="{{ url('/admin/tipo-cancer/agregar') }}" >Agregar</a></li>
-          <li><a href="{{ url('/admin/tipo-cancer/listar') }}">Listar</a></li>
+          <li><a href="{{route('cancer.create') }}" >Agregar</a></li>
+          <li><a href="{{route('cancer.index')}}">Lista</a></li>
         </ul>
       </li>
       <li class="dropdown {{ Request::is('admin/contacto*') ? 'active' : null }}">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contacto <span class="caret"></span></a>
         <ul class="dropdown-menu ">
-          <li><a href="{{ url('/admin/contacto/agregar') }}">Agregar</a></li>
-          <li><a href="{{ url('/admin/contacto/listar') }}">Listar</a></li>
+          <li><a href="{{ url('/admin/contacto/create') }}">Agregar</a></li>
+          <li><a href="{{ url('/admin/contacto') }}">Listar</a></li>
         </ul>
       </li>
       <li class="dropdown {{ Request::is('admin/donaciones*') ? 'active' : null }}">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Donaciones <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="{{ url('/admin/donaciones/agregar') }}">Agregar</a></li>
-          <li><a href="{{ url('/admin/donaciones/listar') }}">Listar</a></li>
+          <li><a href="{{ url('/admin/donaciones/create') }}">Agregar</a></li>
+          <li><a href="{{ url('/admin/donaciones') }}">Listar</a></li>
         </ul>
       </li>
       <li class="dropdown {{ Request::is('admin/usuarios*') ? 'active' : null }}">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="{{ url('/admin/usuarios/agregar') }}">Agregar</a></li>
-          <li><a href="{{ url('/admin/usuarios/listar') }}">Listar</a></li>
+          <li><a href="{{ url('/admin/usuarios/create') }}">Agregar</a></li>
+          <li><a href="{{ url('/admin/usuarios/') }}">Listar</a></li>
         </ul>
       </li>
+      @if( Auth::check() )
+        <ul class="nav navbar-nav navbar-left" id="user-name">
+          <li class="dropdown ">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-o" aria-hidden="true"></i>
+            {{ Auth::user()->nombre }}<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="{{ url('/representante/logout') }}">Cerrar Sesión</a></li>
+            </ul>
+          </li>
+        </ul>
+      @endif
     </ul>
   </div>
 </nav>

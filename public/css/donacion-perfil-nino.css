@@ -3,19 +3,20 @@
     color: #000;
     border-top: 5px border-style #fff;
     margin-top: 3px;
-    margin-left: 5%;
-    margin-right: 5%;
+}
+h5, th{
+    color: #004e89;
+    text-align: center;
+    font-size: 18px;
+}
+p, tr, th{
+    text-align: center;
 }
 .perfil2{
     color: #000;
     border-top: 5px border-style #fff;
     margin-top: 3px;
-    margin-left: 5%;
-    margin-right: 5%;
 }
-.pc1{
-    padding-left: 10%;
-}
-.pc3{
-    padding-right: 10%;
+#footer>div>p{
+    text-align: left;
 }

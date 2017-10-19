@@ -1,6 +1,9 @@
 body{
 	color:#000;
 }
+form{
+	margin-top: 3%;
+}
 #panel, #boton {
     padding: 5px;
     text-align: center;
@@ -24,10 +27,11 @@ textarea, select{
     border: solid 1px #00ced1;
 }
 .titulo{
-	text-align: left; 
+	text-align: center; 
 	width: 100%;
-	font-size: 20px;
+	font-size: 24px;
 	color:#00ced1;
+	padding-bottom: 2%;
 }
 .tamano{
 	width: 60%;

@@ -5,19 +5,24 @@
     margin-top: 20px;
     color: #000;
 }
+
 hr{
     background:rgb(243, 128, 61) !important; 
+}
+p{
+    margin-bottom: 7px;
 }
 .buscar{
     padding-left: 80%;
     margin-top: 20px;
+
 }
 .donar{
     background: #00ced1;
     margin-bottom: 10px;
     width: 40%;
     color: #000;
-    font-size: 20px;
+    font-size: 16px;
 }
 .img1{
    padding-top: 20px;
@@ -27,4 +32,8 @@ hr{
  }
  .datos>h4{
     margin-top: 0px;
+     color: #004E89;
+ }
+ .mensaje{
+    margin-top: 5px;
  }

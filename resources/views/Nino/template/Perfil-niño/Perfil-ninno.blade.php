@@ -85,5 +85,5 @@
       </div>
 		  </div> <!-- fin contacto-->
 		</div><!-- Fin datos personales--> 
-    <div class="insumo-perfil">@include('template.Perfil-niño.Insumos-perfil-paciente')</div>
+    <div class="insumo-perfil">@include('Nino.template.Perfil-niño.Insumos-perfil-paciente')</div>
   </div>

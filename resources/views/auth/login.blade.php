@@ -2,14 +2,14 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             <h3 class="modal-title" id="sesionLabel">Iniciar Sesión</h3>
         </div>
         <div class="modal-body">
             
-            <form class="form-horizontal form-sesion" method="POST" action="{{ route('login') }}">
+            <form class="form-horizontal form-sesion" method="POST" action="{{ route('representante.auth') }}">
                 {{ csrf_field() }}
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     <div class="input-group input-group-md input-capsule">
