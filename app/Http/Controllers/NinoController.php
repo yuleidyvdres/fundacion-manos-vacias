@@ -7,8 +7,6 @@ use App\cancer;
 use App\contacto;
 use App\donacion;
 use App\nino;
-use App\User;
-use Illuminate\Support\Facades\Auth;
 
 class NinoController extends Controller
 {

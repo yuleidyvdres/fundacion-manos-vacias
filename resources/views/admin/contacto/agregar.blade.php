@@ -13,6 +13,17 @@
             <h2 id="title-pag">Agregar Atributo Contacto</h2>
         </div>
     </section>
+    <center>
+        @if(count($errors) > 0)
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </center>
     <section class="row">
         <div class="col-xs-12 col-sm-12">
             <form method="POST" action="{{ route('contacto.store') }}" class="form-width">

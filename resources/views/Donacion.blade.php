@@ -23,7 +23,6 @@
            @foreach($nino as $nin)  
             <div class="col-sm-4">@include('Nino.template.Donar-niño.Ficha-niño')</div>
            @endforeach
-
         </div> 
         <center>{!! $nino->render() !!}</center>
     </div>

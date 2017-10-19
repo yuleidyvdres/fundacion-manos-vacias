@@ -31,7 +31,7 @@ class UserListener
         $log = new bitacora();
         $log->email = $event->user_mail;
         $log->ip = \Request::ip();
-        $log->accion = "Agregar";
+        $log->accion = $event->action;
         $log->fecha = Carbon::now('America/Caracas')->toDateTimeString();
         $log->save();
         

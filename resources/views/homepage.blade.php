@@ -28,41 +28,40 @@
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta alias perspiciatis delectus ad a odit exercitationem facere nisi doloremque non, at animi molestiae placeat quisquam, earum vitae optio velit aspernatur.</p>
         </div>
     </section>
-    <section class="row" id="urgent-supply">
-        <div class="col-xs-12 col-sm-12 col-md-5 child-card" id="right-move">
-            <div class="urgente">
-                <p>Urgente</p> 
-            </div>
-            <div>
-                <img src="{{ asset('imagenes/help.png') }}" alt="Ayuda" class="ayuda">
-                <p><strong>Donación: Lorem ipsum</strong></p>
-                <p>Nombre: María Pérez</p>
-                <p>Edad: 12 años</p>
-                <p>Cáncer: Leucemia</p>
-                <p>Etapa: 1</p>
-                <p>Descripción: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis aperiam nisi praesentium minima accusamus neque obcaecati, libero nesciunt necessitatibus exercitationem distinctio, sapiente animi voluptate fuga alias facere provident tempore doloremque!</p>
-                <a href="{{ url('Donar-perfil') }}" type="button" class="btn-mas">Saber más</a>
-                <!--button type="button" class="btn-mas" href="{{ url('/') }}">Saber más</button-->
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-5 child-card" id="right-move">
-            <div class="urgente">
-                <p>Urgente</p> 
-            </div>
-            <div>
-                <img src="{{ asset('imagenes/help.png') }}" alt="Ayuda" class="ayuda">
-                <p><strong>Donación: Lorem ipsum</strong></p>
-                <p>Nombre: Enmanuel Escalante</p>
-                <p>Edad: 10 años</p>
-                <p>Cáncer: Leucemia</p>
-                <p>Etapa: 2</p>
-                <p>Descripción: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis aperiam nisi praesentium minima accusamus neque obcaecati, libero nesciunt necessitatibus exercitationem distinctio, sapiente animi voluptate fuga alias facere provident tempore doloremque!</p>
-                <a href="{{ url('Donar-perfil') }}" type="button" class="btn-mas">Saber más</a>
-                <!--button class="btn-mas" href="#">Saber más</button-->
-            </div>
-        </div>
-    </section>
-
+    <?php $cont_n = 0; ?>
+    @if(count($ninos) > 1)   
+        <section class="row" id="urgent-supply">
+            @foreach($ninos as $nino)
+                @if($cont_n < 2)
+                    <?php $cont = 0; ?>
+                    <div class="col-xs-12 col-sm-12 col-md-5 child-card" id="right-move">
+                        <div class="urgente">
+                            <p>Urgente</p> 
+                        </div>
+                        <div class="col-xs-12 col-sm-12 sep">
+                            <img src="{{ asset('imagenes/help.png') }}" alt="Ayuda" class="ayuda">
+                        </div>
+                        <div class="col-xs-12 col-sm-12 sep">
+                            @foreach($nino->donaciones as $don)
+                                @if($cont == 0 && $don->pivot->urgencia == 'Alta' && $don->pivot->status == 'No-recibido')
+                                    <?php $cont++; ?>
+                                    <span class="label label-info" id="donacion_urg">Donación: {{ $don->nombre }}</span>
+                                @endif
+                            @endforeach
+                        </div>
+                        <div class="col-xs-12 col-sm-12">
+                            <p>Tipo: {{ $don->tipo }}</p>
+                            <p>Nombre: {{ $nino->nombre }}</p>
+                            <p>Apellido: {{ $nino->apellido }}</p>
+                            <a href="{{ url('Donar-perfil') }}" type="button" class="btn-mas">Saber más</a>
+                            <!--button type="button" class="btn-mas" href="{{ url('/') }}">Saber más</button-->
+                        </div>
+                    </div>
+                    <?php $cont_n++; ?>
+                @endif
+            @endforeach
+        </section>
+    @endif
     @include('layouts.common.footer')
 @endsection
 

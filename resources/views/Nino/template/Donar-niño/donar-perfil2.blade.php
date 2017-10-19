@@ -6,43 +6,45 @@
 				      <tr>
 				        <th>Tipo</th>
 				        <th>Nombre</th>
+				        <th>Característica</th>
 				        <th>Descripción</th>
 				        <th>Estado</th>
 				        <th>Comentario</th>
                         <th>Urgencia</th>
+                        <th>Fecha</th>
 				      </tr>
 				    </thead>
 				    <tbody>
-                     @foreach($nino->donaciones as $aux)
-    				      <tr>
-    				        <td>{{$aux->tipo}}</td>
-                            <td>{{$aux->nombre}}</td>
-
-                            <?php if ($aux->pivot->descripcion!="") { ?>
-                                <td>{{$aux->pivot->descripcion}}</td>
-                            <?php }else{ ?>
-                                <td>-- Sin descripción --</td>
-                            <?php } ?> 
-
-                            <?php if ($aux->pivot->status=="No-recibido") { ?>
-                                <td style="color:#FF2714;"><b>{{$aux->pivot->status}}</b></td>
-                            <?php }else{ ?>
-                                <td>{{$aux->pivot->status}}</td>
-                            <?php } ?>
-
-                             <?php if ($aux->pivot->comentario!="") { ?>
-                                <td>{{$aux->pivot->comentario}}</td>
-                            <?php }else{ ?>
-                                <td>-- Sin comentario --</td>
-                            <?php } ?>
-
-                            <?php if ($aux->pivot->urgencia=="Alta") { ?>
-                                <td style="color:#FF2714;"><b>{{$aux->pivot->urgencia}}</b></td>
-                            <?php }else{ ?>
-                                <td>{{$aux->pivot->urgencia}}</td>
-                            <?php } ?>
-    				     </tr>
-                     @endforeach
+				      <tr>
+				        <td>Medicamento</td>
+				        <td>XXXXX</td>
+                        <td>5mg</td>
+                        <td>2 Cajas</td>
+                        <td>Por Donar</td>
+				        <td>-sin comentario-</td>
+                        <td>Media</td>
+                        <td>15/9/2017</td>
+				     </tr>
+				    <tr>
+                        <td>Medicamento</td>
+                        <td>XXXXX</td>
+                        <td>10mg</td>
+                        <td>Para una operación</td>
+                        <td>Por Donar</td>
+                        <td>-sin comentario-</td>
+                        <td>Alta</td>
+                        <td>14/9/2017</td>
+                    </tr>
+                    <tr>
+				        <td>Insumo</td>
+				        <td>XXXXX</td>
+                        <td>Talla 3</td>
+                        <td>xxxxxxx</td>
+                        <td>Recibido</td>
+				        <td>Gracias por la Ayuda!</td>
+                        <td>Media</td>
+                        <td>1/9/2017</td>
+				    </tr>
 				    </tbody>
 				  </table>
         	</div>
