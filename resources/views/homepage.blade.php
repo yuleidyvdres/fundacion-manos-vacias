@@ -53,7 +53,7 @@
                             <p>Tipo: {{ $don->tipo }}</p>
                             <p>Nombre: {{ $nino->nombre }}</p>
                             <p>Apellido: {{ $nino->apellido }}</p>
-                            <a href="{{ url('Donar-perfil') }}" type="button" class="btn-mas">Saber más</a>
+                            <a href="{{ route('Niño.perfil_publico', ['id' => $nino->id]) }}" type="button" class="btn-mas">Saber más</a>
                             <!--button type="button" class="btn-mas" href="{{ url('/') }}">Saber más</button-->
                         </div>
                     </div>

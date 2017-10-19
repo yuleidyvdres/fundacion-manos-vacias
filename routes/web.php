@@ -56,7 +56,19 @@ Route::group(['prefix' => 'Perfil', 'middleware' => ['auth']], function(){
     //--------------------------------------------------  
 });//fin grupo rutas ninno
 
+Route::group(['prefix' => 'Donacion'], function(){
+	//----------------Donacion Parte publica -----------
+	   Route::get('Niño/donacion-publica',[
+				   'uses'=>'NinoController@donacion_publica',
+				   'as'=>'Niño.donacion_publica'
+	   ]);
+		Route::get('Niño/Perfil-publico',[
+				   'uses'=>'NinoController@perfil_publico',
+				   'as'=>'Niño.perfil_publico'
+	   ]);
+   });
 
+//------------------------ Representante --------------------------- 
 Route::post('representante/auth', [
 	'uses' => 'RepresentanteController@authentificate',
 	'as'   => 'representante.auth'
@@ -66,6 +78,7 @@ Route::get('representante/logout', [
 	'as'   => 'representante.logout'
 ]);
 Route::resource('representante', 'RepresentanteController');
+//------------------------- Administrador -----------------------------
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(){
 
 	Route::group(['prefix' => 'tipo-cancer'], function(){
