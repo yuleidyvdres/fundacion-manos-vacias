@@ -101,6 +101,17 @@
     width: 50px;
 }
 
+#donacion_urg {
+    padding: .5em .8em .5em;
+    font-size: 80%;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.sep {
+    margin-bottom: 10px;
+}
+
 @media only screen and (max-width: 767px) {
     #urgent-supply {
         padding-left: 20%;

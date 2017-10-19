@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function() {
-    return view('homepage'); 
-});
+Route::get('/', [
+	'uses' => 'HomeController@urgencias',
+	'as' => "homepage"
+]);
 
 Auth::routes();
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');

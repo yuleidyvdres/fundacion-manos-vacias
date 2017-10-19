@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\cancer;
 use Laracasts\Flash\Flash;
+use App\Events\UserEvent;
+use App\User;
 
 class CancerController extends Controller
 {
@@ -40,9 +42,11 @@ class CancerController extends Controller
     {
         
         $cancer= new cancer();
-        $cancer->nombre=$request->cancer;
+        $cancer->nombre=ucfirst(trans($request->cancer));
         $cancer->save();
-
+        $user = new User();
+        
+        event(new UserEvent($user, 'Agregar tipo cáncer'));
         flash('Se ha registrado '. $cancer->nombre . ' de forma exitosa')->success()->important();
         return redirect()->route('cancer.index');
     }
@@ -91,7 +95,9 @@ class CancerController extends Controller
     {
          $cancer= cancer::find($id);
          $cancer->delete();
-
+         $user = new User();
+         
+         event(new UserEvent($user, 'Eliminar tipo cáncer'));
         flash('Se ha eliminado '. $cancer->nombre . ' de forma exitosa')->error()->important();
         return redirect()->route('cancer.index');
     }

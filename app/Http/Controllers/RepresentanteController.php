@@ -21,6 +21,8 @@ class RepresentanteController extends Controller
        
         $confirm = User::find($representante->id);
         if(!$confirm) {
+            $representante->nombre = ucfirst(trans($request->nombre));
+            $representante->apellido = ucfirst(trans($request->apellido));
             $representante->save();
             event(new UserEvent($representante, 'Agregar usuario'));
             flash('Se ha agregado el usuario ' .$representante->nombre)->success()->important();
@@ -38,11 +40,11 @@ class RepresentanteController extends Controller
         }
         else{
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-                return view('homepage');
+                return redirect()->route('homepage');
             }
             else {
                 flash('Credenciales incorrectas')->error()->important();
-                return view('homepage');
+                return redirect()->route('homepage');
             }
         }
     }
@@ -50,7 +52,7 @@ class RepresentanteController extends Controller
     public function logout () {
         Auth::logout();
 
-        return view('homepage');
+        return redirect()->route('homepage');
     }
 
 

@@ -38,7 +38,7 @@ class LoginController extends Controller
     }
 
     public function showLoginForm () {
-        return view('homepage');
+        return redirect()->route('homepage');
     }
 
 }

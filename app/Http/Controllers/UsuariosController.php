@@ -20,6 +20,8 @@ class UsuariosController extends Controller
 
         $confirm = User::find($usuarios->id);
         if(!$confirm) {
+            $usuarios->nombre = ucfirst(trans($request->nombre));
+            $usuarios->apellido = ucfirst(trans($request->apellido));
             $usuarios->save();
             event(new UserEvent($usuarios, 'Agregar usuario'));
             flash('Se ha agregado el administrador ' .$usuarios->nombre)->success()->important();

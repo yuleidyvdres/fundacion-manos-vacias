@@ -16,6 +16,7 @@ class ContactoController extends Controller
 
     public function store (ContactoRequest $request) {
         $contacto = new contacto($request->all());
+        $contacto->nombre = ucfirst(trans($request->nombre));
         $contacto->save();
         $user = new User();
         

@@ -17,6 +17,7 @@ class DonacionesController extends Controller
 
     public function store (DonacionRequest $request) {
         $donacion = new donacion($request->all());
+        $donacion->nombre = ucfirst(trans($request->nombre));
         $donacion->save();
         $user = new User();
 
