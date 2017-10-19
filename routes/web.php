@@ -21,7 +21,7 @@ $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::group(['prefix' => 'Perfil'], function(){
+Route::group(['prefix' => 'Perfil', 'middleware' => ['auth']], function(){
 	Route::resource('Niño','NinoController');
 //------------------- Formulario Ninos ---------------------
 //-----------------------------------------------------------
@@ -66,7 +66,7 @@ Route::group(['prefix' => 'Donacion'], function(){
 				'as'=>'Niño.perfil_publico'
 	]);
 });
-
+//------------------------ Representante --------------------------- 
 Route::post('representante/auth', [
 	'uses' => 'RepresentanteController@authentificate',
 	'as'   => 'representante.auth'
@@ -76,7 +76,7 @@ Route::get('representante/logout', [
 	'as'   => 'representante.logout'
 ]);
 Route::resource('representante', 'RepresentanteController');
-
+//------------------------- Administrador -----------------------------
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(){
 
 	Route::group(['prefix' => 'tipo-cancer'], function(){

@@ -18,8 +18,7 @@
 				  <span class="input-group-addon borde-inc" id="inputUsuario">
              <i class="fa fa-user" aria-hidden="true"></i>
           </span>
-		      <input type="text" class="borde form-control" id="nombre" name="nombre" placeholder="Nombre. Primera letra en Mayuscula." 
-		      pattern="^[A-Z].[a-z]" required>
+		      <input type="text" class="borde form-control" id="nombre" name="nombre" placeholder="Nombre." required>
 		    </div>
 		  </div>
 
@@ -28,7 +27,7 @@
 				  <span class="input-group-addon borde-inc" id="inputUsuario">
              <i class="fa fa-user" aria-hidden="true"></i>
           </span>
-		      <input type="text" class="borde form-control" id="apellido" name="apellido" placeholder="Apellido. Primera letra en Mayuscula." pattern="^[A-Z].[a-z]" required>
+		      <input type="text" class="borde form-control" id="apellido" name="apellido" placeholder="Apellido." required>
 		    </div>
 		  </div>
 

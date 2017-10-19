@@ -1,7 +1,7 @@
      <!-- Datos Personales-->	
 <div class="row perfil1">
 		<center>
-			<h3>{{$nino->nombre}} {{$nino->apellido}}</h3>
+			<h3>{{ ucfirst(trans($nino->nombre)) }} {{ ucfirst(trans($nino->apellido)) }}</h3>
 			<p>{{$nino->situacion_actual}}</p>
 		</center> 
     <hr>

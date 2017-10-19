@@ -9,7 +9,7 @@
         <?php }?>
     
         <div class="col-sm-8">
-            <h2>{{$nin->nombre}} {{$nin->apellido}}</h2>
+            <h2>{{ ucfirst(trans($nin->nombre)) }} {{ ucfirst(trans($nin->apellido)) }}</h2>
             <p>{{ substr($nin->situacion_actual, 0, 25) }} ...</p>
         </div>
   </div>

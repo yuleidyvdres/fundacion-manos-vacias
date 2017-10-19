@@ -7,12 +7,17 @@ use App\cancer;
 use App\contacto;
 use App\donacion;
 use App\nino;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class NinoController extends Controller
 {
       public function index()
     {
-      return view('Nino.Ninos')->with('title', 'Perfil Niños');
+      $nino=nino::all();
+      //dd($nino->where("users_id",Auth::user()->id));
+      return view('Nino.Ninos')->with('title', 'Perfil Niños')
+                ->with('nino',$nino->where("users_id",Auth::user()->id));
     }
 
      public function donacion_publica()
@@ -87,8 +92,8 @@ class NinoController extends Controller
         $nino->fecha_nacimiento=$request->Fecha_nac;
         $nino->genero=$request->Sexo;
         $nino->situacion_actual=$request->SA;
-        //$nino->users_id=/Auth::user()->id;
-        $nino->users_id=24356108;
+        $nino->users_id=Auth::user()->id;
+        //$nino->users_id=24356108;
         $nino->save();
         $nino= nino::find($request->norpartida);
         //--------------- Datos de contacto 
