@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class nino extends Model
 {
@@ -30,5 +31,24 @@ class nino extends Model
         return $this->belongsToMany('App\contacto','nino-contacto','nino_id','contacto_id')
                                     ->withPivot('valor')
                                     ->withTimestamps();
+    }
+
+    public function scopeBuscarNino($query, $estado){
+    	if (trim($estado)!="") {
+            /*dd($estado);*/
+            $ninos = nino::join('nino-contacto','ninos.id', '=', 'nino_id') 
+                           ->where('valor', 'like', "%".$estado."%");
+    
+            return $ninos;
+        }
+    }
+
+    public function edad() {
+        $year = Carbon::createFromFormat('Y-m-d', $this->fecha_nacimiento)->year;
+        $month = Carbon::createFromFormat('Y-m-d', $this->fecha_nacimiento)->month;
+        $day =  Carbon::createFromFormat('Y-m-d', $this->fecha_nacimiento)->day;
+        
+        $edad = Carbon::createFromDate($year,$month,$day)->age;
+        return $edad;
     }
 }

@@ -21,6 +21,10 @@ $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('Niño/buscar', [
+	'uses' => 'NinoController@search',
+	'as' => 'buscar.donacion.publico'
+ ]);
 
 Route::group(['prefix' => 'Perfil', 'middleware' => ['auth']], function(){
 	Route::resource('Niño','NinoController');
@@ -53,7 +57,7 @@ Route::group(['prefix' => 'Perfil', 'middleware' => ['auth']], function(){
 				'uses'=>'NinoController@store_donacion',
 				'as'=>'Niño.store_donacion'
     ]);	
-    //--------------------------------------------------  
+	//-------------------------------------------------- 
 });//fin grupo rutas ninno
 
 Route::group(['prefix' => 'Donacion'], function(){

@@ -16,7 +16,7 @@
 <hr>
 <div class="row contenido">
       <div class="col-sm-6 datos">
-          <h4>Nacimiento</h4>
+          <h4>Edad</h4>
           <h4>Estado:</h4>
           <h4>Municipio:</h4>
            <hr>
@@ -30,8 +30,8 @@
       </div>
       <div class="col-sm-6">
           
-          <p>{{$nin->fecha_nacimiento}}</p>
-         
+          {{$nin->edad() }}
+          
 
           @foreach($nin->contactos as $aux)
             <?php if ($aux->nombre=='Estado') {?>
@@ -44,6 +44,8 @@
               <p> {{$aux->pivot->valor}} </p>
            <?php }?>  
           @endforeach
+
+          
           <hr>
           <h4 style="color:#004E89;">Diagnóstico</h4>
           <?php $var=0; ?>

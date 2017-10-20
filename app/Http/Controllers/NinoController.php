@@ -25,7 +25,7 @@ class NinoController extends Controller
        $nino->each(function($nino){
             $nino->user;
        });
-       return view('Donacion')->with('title', 'Donaciones')->with('nino', $nino);
+       return view('Donacion')->with('title', 'Donaciones')->with('nino', $nino, 'edad', 0);
     }
     public function perfil_publico(Request $request)
     {
@@ -133,6 +133,12 @@ class NinoController extends Controller
 
         flash('Se ha registrade '. $donacion->nombre. ' de forma exitosa')->success()->important();
         return redirect()->route('Niño.create_donacion',['id' => $request->partida]);
+    }
+
+    public function search (Request $request) {
+        $ninos = nino::BuscarNino($request->estado)->paginate(6);
+        
+        return view('Donacion')->with('title', 'Donaciones')->with('nino', $ninos, 'edad', $request->edad);
     }
 
     /**
