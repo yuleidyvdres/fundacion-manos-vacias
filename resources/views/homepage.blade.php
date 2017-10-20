@@ -20,11 +20,14 @@
     <section class="row" id="info">
         <div class="col-xs-12 col-sm-offset-1 col-sm-5" id="block-1">
             <h2>¿A quién ayudamos?</h2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat, beatae. Veniam, ut omnis ipsum similique nulla nobis consectetur quasi esse rerum beatae itaque natus cum eius facere quidem iure culpa.</p>
+            <p>En la Fundación Manos Vacías ayudamos a todos aquellos niños que necesitan algún tipo de medicamento o insumo para
+               sus tratamientos.
+            </p>
+            <p>Sólo tienes que registrarte como representante y luego tendrás acceso al registro del niño junto con sus necesidades</p>
         </div>
         <div class="col-xs-12 col-sm-5" id="block-1">
             <h2>¿Por qué lo hacemos?</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium ducimus velit officiis soluta incidunt commodi facere earum vero at consequatur, ipsam, eius natus rerum impedit vel tenetur iste. Dolor, blanditiis.</p>
+            <p></p>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta alias perspiciatis delectus ad a odit exercitationem facere nisi doloremque non, at animi molestiae placeat quisquam, earum vitae optio velit aspernatur.</p>
         </div>
     </section>
