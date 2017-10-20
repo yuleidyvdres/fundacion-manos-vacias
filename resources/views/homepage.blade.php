@@ -33,34 +33,41 @@
     </section>
     <?php $cont_n = 0; ?>
     @if(count($ninos) > 1)   
-        <section class="row" id="urgent-supply">
+        <section class="row center-block" id="urgent-supply">
             @foreach($ninos as $nino)
                 @if($cont_n < 2)
-                    <?php $cont = 0; ?>
-                    <div class="col-xs-12 col-sm-12 col-md-5 child-card" id="right-move">
-                        <div class="urgente">
-                            <p>Urgente</p> 
-                        </div>
-                        <div class="col-xs-12 col-sm-12 sep">
-                            <img src="{{ asset('imagenes/help.png') }}" alt="Ayuda" class="ayuda">
-                        </div>
-                        <div class="col-xs-12 col-sm-12 sep">
-                            @foreach($nino->donaciones as $don)
-                                @if($cont == 0 && $don->pivot->urgencia == 'Alta' && $don->pivot->status == 'No-recibido')
-                                    <?php $cont++; ?>
-                                    <span class="label label-info" id="donacion_urg">Donación: {{ $don->nombre }}</span>
-                                @endif
-                            @endforeach
-                        </div>
-                        <div class="col-xs-12 col-sm-12">
-                            <p>Tipo: {{ $don->tipo }}</p>
-                            <p>Nombre: {{ $nino->nombre }}</p>
-                            <p>Apellido: {{ $nino->apellido }}</p>
-                            <a href="{{ route('Niño.perfil_publico', ['id' => $nino->id]) }}" type="button" class="btn-mas">Saber más</a>
-                            <!--button type="button" class="btn-mas" href="{{ url('/') }}">Saber más</button-->
-                        </div>
-                    </div>
-                    <?php $cont_n++; ?>
+                    <?php $cont = 0; $band=false; $donacion; ?>
+                    @foreach($nino->donaciones as $don)
+                        @if($cont == 0 && $don->pivot->urgencia == 'Alta' && $don->pivot->status == 'No-recibido')
+                            <?php $band=true; ?>
+                            <?php $donacion = $don->nombre; ?>
+                            <?php $cont++; ?>
+                            @break;
+                        @endif
+                    @endforeach
+                    @if($band)
+                        <center>
+                            <div class="col-xs-12 col-sm-12 col-md-5 child-card" id="right-move">
+                                <div class="urgente">
+                                    <p>Urgente</p> 
+                                </div>
+                                <div class="col-xs-12 col-sm-12 sep">
+                                    <img src="{{ asset('imagenes/help.png') }}" alt="Ayuda" class="ayuda">
+                                </div>
+                                <div class="col-xs-12 col-sm-12 sep">
+                                    
+                                </div>
+                                <div class="col-xs-12 col-sm-12">
+                                    <p>Nombre: {{ $nino->nombre }}</p>
+                                    <p>Apellido: {{ $nino->apellido }}</p>
+                                    <p>Tipo: {{ $don->tipo }}</p>
+                                    <p><span class="label label-info" id="donacion_urg">Donación: {{ $donacion }}</span></p>
+                                    <a href="{{ route('Niño.perfil_publico', ['id' => $nino->id]) }}" type="button" class="btn-mas">Saber más</a>
+                                </div>
+                            </div>
+                        </center>
+                        <?php $cont_n++; $band=false; ?>
+                    @endif
                 @endif
             @endforeach
         </section>
