@@ -1,7 +1,7 @@
 <div class="container-fluid ficha">
 <div class="row">
       
-        
+       
       <?php if ($nin->genero=='Niña') {?>
         <div class="col-sm-4 img1"><img width='90%' src="{{asset('imagenes/muneca.png')}}" alt="Avatar"></div>
       <?php }else{ ?>
@@ -31,9 +31,9 @@
       <div class="col-sm-6">
           
           {{$nin->edad() }}
-          
 
           @foreach($nin->contactos as $aux)
+              dd($aux->nombre);
             <?php if ($aux->nombre=='Estado') {?>
               <p> {{$aux->pivot->valor}} </p>
            <?php } ?>  

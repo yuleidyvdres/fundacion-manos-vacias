@@ -18,6 +18,7 @@
                                 <i class="fa fa-map-marker" aria-hidden="true"></i>
                             </span>
                                 <select class="form-control" id="estado" name="estado" required>
+                                    <option value="seleccionar">Seleccionar</option>
                                     <option value="amazonas">Amazonas</option>
                                     <option value="anzoategui">Anzoátegui</option>
                                     <option value="apure">Apure</option>
@@ -65,9 +66,18 @@
          </div>    
         </div-->
         <div class="row">
+            <?php $cont=0; ?>
            @foreach($nino as $nin)  
-            <div class="col-sm-4">@include('Nino.template.Donar-niño.Ficha-niño')</div>
+                @if($edad!=null && $edad== $nin->edad())
+                    <div class="col-sm-4">@include('Nino.template.Donar-niño.Ficha-niño')</div>
+                    <?php $cont++; ?>
+                @else
+                    @if($edad==null)
+                        <div class="col-sm-4">@include('Nino.template.Donar-niño.Ficha-niño')</div>
+                    @endif
+                @endif
            @endforeach
+           
         </div> 
         <center>{!! $nino->render() !!}</center>
     </div>

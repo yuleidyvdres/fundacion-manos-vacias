@@ -33,14 +33,24 @@ class nino extends Model
                                     ->withTimestamps();
     }
 
-    public function scopeBuscarNino($query, $estado){
-    	if (trim($estado)!="") {
-            /*dd($estado);*/
+    public function scopeBuscarNino($query, $estado, $edad){
+    	if (trim($estado)!="seleccionar") {
             $ninos = nino::join('nino-contacto','ninos.id', '=', 'nino_id') 
                            ->where('valor', 'like', "%".$estado."%");
+
     
             return $ninos;
         }
+        else{
+            if($edad!=null){
+                $ninos = nino::select('*');
+                
+                return $ninos;
+            }
+        }
+
+        
+
     }
 
     public function edad() {

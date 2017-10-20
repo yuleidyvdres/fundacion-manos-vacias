@@ -25,7 +25,7 @@ class NinoController extends Controller
        $nino->each(function($nino){
             $nino->user;
        });
-       return view('Donacion')->with('title', 'Donaciones')->with('nino', $nino, 'edad', 0);
+       return view('Donacion')->with('title', 'Donaciones')->with('nino', $nino)->with('edad', null);
     }
     public function perfil_publico(Request $request)
     {
@@ -136,9 +136,9 @@ class NinoController extends Controller
     }
 
     public function search (Request $request) {
-        $ninos = nino::BuscarNino($request->estado)->paginate(6);
+        $ninos = nino::BuscarNino($request->estado, $request->edad)->paginate(6);
         
-        return view('Donacion')->with('title', 'Donaciones')->with('nino', $ninos, 'edad', $request->edad);
+        return view('Donacion')->with('title', 'Donaciones')->with('nino', $ninos)->with('edad', $request->edad);
     }
 
     /**
