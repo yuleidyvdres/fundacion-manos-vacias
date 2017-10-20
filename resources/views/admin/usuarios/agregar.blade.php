@@ -75,4 +75,5 @@
             </form>
         </div>
     </section>
+    @include('layouts.common.footer')
 @endsection

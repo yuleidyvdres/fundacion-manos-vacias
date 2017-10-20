@@ -55,4 +55,5 @@
             </center>
         </div>
     </section>
+    @include('layouts.common.footer')
 @endsection
