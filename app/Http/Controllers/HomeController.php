@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use App\nino;
 
 class HomeController extends Controller
@@ -24,7 +25,8 @@ class HomeController extends Controller
      */
     public function urgencias()
     {
-        $ninos = nino::all();
+        $ninos = nino::all()->random(2);
+        $ninos = $ninos->all();
         
         return view('homepage')->with('ninos', $ninos);
     }

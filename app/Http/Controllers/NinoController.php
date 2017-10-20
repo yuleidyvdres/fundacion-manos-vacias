@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Events\UserEvent;
 use App\cancer;
 use App\contacto;
 use App\donacion;
@@ -93,6 +94,12 @@ class NinoController extends Controller
         $nino->situacion_actual=$request->SA;
         $nino->users_id=Auth::user()->id;
         //$nino->users_id=24356108;
+
+        /*Bitácora*/
+        $usuario = Auth::user();
+        event(new UserEvent($usuario, 'Agregar niño'));
+
+
         $nino->save();
         $nino= nino::find($request->norpartida);
         //--------------- Datos de contacto 
@@ -110,6 +117,10 @@ class NinoController extends Controller
         //-------------- Tipo Cancer 
         $nino->cancers()->attach($request->Tipo_cancer, ['fecha_deteccion' => $request->Fecha_inicio_cancer]);
 
+        /*Bitácora*/
+        $usuario = Auth::user();
+        event(new UserEvent($usuario, 'Agregar nino_cancer'));
+
         flash('Se ha registrade '. $cancer->nombre . ' de forma exitosa')->success()->important();
         return redirect()->route('Niño.create_cancer',['id' => $request->partida]);
      
@@ -120,6 +131,11 @@ class NinoController extends Controller
          $nino= nino::find($request->partida);
          $contacto=contacto::find($request->Tipo_contacto);
          $nino->contactos()->attach($request->Tipo_contacto, ['valor' =>$request->valor_cont]);
+
+        /*Bitácora*/
+        $usuario = Auth::user();
+        event(new UserEvent($usuario, 'Agregar niño_contacto'));
+
          flash('Se ha registrade '. $contacto->nombre. ' de forma exitosa')->success()->important();
         return redirect()->route('Niño.create_contacto',['id' => $request->partida]);
         
@@ -129,7 +145,11 @@ class NinoController extends Controller
         $nino= nino::find($request->partida);
         $donacion=donacion::find($request->Donacion);
         //-------------- Donaciones
-         $nino->donaciones()->attach($request->Donacion, ['status' => 'No-recibido', 'urgencia' => $request->Urgencia,'descripcion'=>$request->DP, 'cantidad'=>$request->cantidad]);
+        $nino->donaciones()->attach($request->Donacion, ['status' => 'No-recibido', 'urgencia' => $request->Urgencia,'descripcion'=>$request->DP, 'cantidad'=>$request->cantidad]);
+
+        /*Bitácora*/
+        $usuario = Auth::user();
+        event(new UserEvent($usuario, 'Agregar niño_donacion'));
 
         flash('Se ha registrade '. $donacion->nombre. ' de forma exitosa')->success()->important();
         return redirect()->route('Niño.create_donacion',['id' => $request->partida]);
