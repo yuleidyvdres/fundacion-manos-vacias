@@ -29,10 +29,9 @@
           @endforeach
       </div>
       <div class="col-sm-6">
-          {{$nin->edad() }}
+          <p>{{$nin->edad() }}</p>
 
           @foreach($nin->contactos as $aux)
-              dd($aux->nombre);
             <?php if ($aux->nombre=='Estado') {?>
               <p> {{$aux->pivot->valor}} </p>
            <?php } ?>  

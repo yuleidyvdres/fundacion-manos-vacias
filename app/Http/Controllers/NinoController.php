@@ -11,7 +11,7 @@ use App\donacion;
 use App\nino;
 use App\User;
 use App\ninocontacto;
-use Illuminate\Support\Facades\Auth;
+//use Illuminate\Support\Facades\Auth;
 
 class NinoController extends Controller
 {

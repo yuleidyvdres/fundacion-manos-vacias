@@ -62,3 +62,4 @@ class nino extends Model
             $query->where("nombre","LIKE","%$nombre%");
         }       
     }
+}
