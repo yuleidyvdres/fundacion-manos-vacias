@@ -134,6 +134,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 		'uses' => 'UsuariosController@search',
 		'as'   => 'admin.usuarios.search'
 	]);
+	Route::get('/usuarios/{id}/activar', [
+		'uses' => 'UsuariosController@activar',
+		'as' => 'admin.usuarios.activar'
+	]);
 	Route::resource('usuarios', 'UsuariosController');
 
 });
