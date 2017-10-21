@@ -35,11 +35,11 @@ class RepresentanteController extends Controller
     }
 
     public function authentificate (Request $request) {
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'rol' => 'Admin'])) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'rol' => 'Admin', 'active' => true])) {
             return redirect()->route('donaciones.index');
         }
         else{
-            if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'active' => true])) {
                 return redirect()->route('homepage');
             }
             else {
