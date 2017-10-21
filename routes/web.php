@@ -26,7 +26,7 @@ Route::get('Niño/buscar', [
 	'as' => 'buscar.donacion.publico'
  ]);
 
-Route::group(['prefix' => 'Perfil', 'middleware' => ['auth']], function(){
+Route::group(['prefix' => 'Perfil', 'middleware' => ['auth','representante']], function(){
 	Route::resource('Niño','NinoController');
 //------------------- Formulario Ninos ---------------------
 //-----------------------------------------------------------
