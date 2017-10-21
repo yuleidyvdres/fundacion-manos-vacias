@@ -53,7 +53,7 @@
                                     @if($donacion->active)
                                         <a href="{{ route('admin.donacion.destroy', $donacion->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></a>
                                     @else
-                                    <a href="{{ route('admin.donacion.activar', $donacion->id) }}" class="btn btn-success btn-sm"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>
+                                        <a href="{{ route('admin.donacion.activar', $donacion->id) }}" class="btn btn-success btn-sm"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>
                                     @endif
                                 </td>
                             </tr>

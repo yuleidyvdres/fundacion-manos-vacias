@@ -32,11 +32,23 @@ class ContactoController extends Controller
 
     public function destroy ($id) {
         $contacto = contacto::find($id);
-        $contacto->delete();
+        $contacto->active = false;
+        $contacto->save();
         $user = new User();
 
         event(new UserEvent($user, 'Eliminar contacto'));
         flash('Se ha eliminado el atributo contacto ' .$contacto->nombre)->error()->important();
+        return redirect()->route('contacto.index');
+    }
+
+    public function activar ($id) {
+        $contacto = contacto::find($id);
+        $contacto->active = true; 
+        $contacto->save();
+        $user = new User();
+
+        event(new UserEvent($user, 'Actualizar contacto'));
+        flash('Se ha reactivado el atributo contacto ' .$contacto->nombre)->success()->important();
         return redirect()->route('contacto.index');
     }
 

@@ -103,6 +103,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 		'uses' => 'ContactoController@search',
 		'as'   => 'admin.contacto.search'
 	]);
+	Route::get('/contacto/{id}/activar', [
+		'uses' => 'ContactoController@activar',
+		'as' => 'admin.contacto.activar'
+	]);
 	Route::resource('contacto', 'ContactoController');
 
 	Route::get('/donacion/{id}/destroy', [
