@@ -33,7 +33,6 @@
           {{$nin->edad() }}
 
           @foreach($nin->contactos as $aux)
-              dd($aux->nombre);
             <?php if ($aux->nombre=='Estado') {?>
               <p> {{$aux->pivot->valor}} </p>
            <?php } ?>  
@@ -61,7 +60,7 @@
       <?php $var=0; ?>
      @foreach($nin->donaciones as $aux)
         <?php if ($aux->pivot->urgencia=='Alta' and $var==0) { $var++;?>
-         <h4 style="color:#FF2714;"><b>Se necesita Donacion Urgente</b></h4>
+         <h4 style="color:#FF2714;"><b>Se necesita Donación Urgente</b></h4>
         <?php }else{  
           if($var==0){ $var++; ?>
          <h4>Haz Feliz a un Niño, ¡Ayuda!</h4>
