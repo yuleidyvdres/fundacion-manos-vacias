@@ -4,6 +4,15 @@
 
 			 <label class="titulo">Contacto</label></br>
 
+			  <div class="form-group" style="display: none;">
+						<div class="input-group input-group-md input-capsule">
+							<span class="borde-inc input-group-addon">
+								<i class="fa fa-id-card" aria-hidden="true"></i>
+							</span>
+							<input type="text" class="borde form-control" id="solicitud" name="solicitud" placeholder="Fecha de Diagnóstico del Cáncer" value="{{$var}}" onfocus="this.blur()">
+						</div>
+			  </div>
+
 			 	<div class="form-group">
 						<div class="input-group input-group-md input-capsule">
 							<span class="borde-inc input-group-addon">
@@ -32,16 +41,20 @@
 								<input type="text" class="borde form-control" id="valor_cont" name="valor_cont" placeholder="Valor"  minlength="11" maxlength="11" required>
 							<?php } else{ ?>
 								<input type="text" class="borde form-control" id="valor_cont" name="valor_cont" placeholder="Valor" required>
-							<?php }  
-							// ^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$ -> Email?>
-							
+							<?php } ?>							
 					    </div>
 					</div>
 				</div> 
 			  </div></br></br>
-			  <center>
-			  	<a  href="{{ route('Niño.create_donacion',['id' => $partida]) }}" class="btn btn-default" id="botonSiguienteEstado2">Siguiente</a>
-			  </center>	
+			  	<?php if ($var=='nuevo') { ?>
+				<center>
+					<a href="{{route('Niño.create_donacion',['id' => $partida, 'var'=>'nuevo'])}}" class="btn btn-default" id="botonSiguienteEstado1">Siguiente</a>
+				</center>	
+				<?php } else{ ?>
+				<center>
+					<a  href="{{ route('Niño.index') }}" class="btn btn-default" id="botonSiguienteEstado2">Perfil Niño</a>
+   			    </center>
+				<?php } ?>
 			 </br>
 			 <center>
 	         	<input type="submit" value="Agregar Contacto" id="btn-agregar" class="btn btn-default btn-md btn-submit">

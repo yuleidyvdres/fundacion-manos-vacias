@@ -1,3 +1,4 @@
+
 <!-- - - - - - - - - - - - - - - - - - - - - - - - -->
 <form method="POST" class="form-width" action="{{ route('Niño.store') }}"><!--inicio Datos Generales-->
      {{ csrf_field() }} 
@@ -66,7 +67,8 @@
 							<span class="borde-inc input-group-addon">
 								<i class="fa fa-map-marker" aria-hidden="true"></i>
 							</span>
-								<select class="form-control" id="Estado" name="Estado" required>
+								<select class="form-control" id="Estado" name="Estado" onchange="Estado_municipio();" required>
+									<option> </option>
 									<option>Amazonas</option>
 									<option>Anzoátegui</option>
 									<option>Apure</option>
@@ -102,8 +104,6 @@
 							</span>
 								<select class="form-control" id="Parroquia" name="Parroquia" required>
 									<option>Municipio</option>
-									<option>1</option>
-									<option>2</option>
 								</select>
 						</div>
 			  </div>

@@ -9,13 +9,15 @@ use App\cancer;
 use App\contacto;
 use App\donacion;
 use App\nino;
+use App\User;
+use App\ninocontacto;
+use Illuminate\Support\Facades\Auth;
 
 class NinoController extends Controller
 {
-      public function index()
+      public function index(Request $request)
     {
       $nino=nino::all();
-      //dd($nino->where("users_id",Auth::user()->id));
       return view('Nino.Ninos')->with('title', 'Perfil Niños')
                 ->with('nino',$nino->where("users_id",Auth::user()->id));
     }
@@ -26,7 +28,10 @@ class NinoController extends Controller
        $nino->each(function($nino){
             $nino->user;
        });
+
        return view('Donacion')->with('title', 'Donaciones')->with('nino', $nino)->with('edad', null);
+       //return view('Donacion')->with('title', 'Donaciones')->with('nino', $nino);
+
     }
     public function perfil_publico(Request $request)
     {
@@ -58,6 +63,7 @@ class NinoController extends Controller
       return view('Nino.cancer-nino')->with('title', 'Perfil Niños')
             ->with('cancer',$cancer)
             ->with('partida',$request->get('id'))
+            ->with('var',$request->get('var')) //rebisar 
             ->with('nacimiento',$nino->fecha_nacimiento);
 
     }
@@ -66,7 +72,8 @@ class NinoController extends Controller
       $contacto=contacto::orderBY('nombre','ASC')->pluck('nombre','id')->diff(["Estado","Municipio"]);
       return view('Nino.contacto-nino')->with('title', 'Perfil Niños')
             ->with('contacto',$contacto)
-            ->with('partida',$request->get('id'));
+            ->with('partida',$request->get('id'))
+            ->with('var',$request->get('var'));
 
     }
      public function create_donacion(Request $request)
@@ -94,12 +101,10 @@ class NinoController extends Controller
         $nino->situacion_actual=$request->SA;
         $nino->users_id=Auth::user()->id;
         //$nino->users_id=24356108;
-
         /*Bitácora*/
         $usuario = Auth::user();
         event(new UserEvent($usuario, 'Agregar niño'));
-
-
+        //-------------------------------------------
         $nino->save();
         $nino= nino::find($request->norpartida);
         //--------------- Datos de contacto 
@@ -107,7 +112,7 @@ class NinoController extends Controller
         $nino->contactos()->attach(4, ['valor' => $request->Parroquia]);
         
         flash('Se ha registrade '. $nino->nombre . ' de forma exitosa')->success()->important();
-        return redirect()->route('Niño.create_cancer',['id' => $request->norpartida]);
+        return redirect()->route('Niño.create_cancer',['id' => $request->norpartida, 'var'=>'nuevo']);
     }
 
     public function store_cancer(Request $request)
@@ -117,12 +122,13 @@ class NinoController extends Controller
         //-------------- Tipo Cancer 
         $nino->cancers()->attach($request->Tipo_cancer, ['fecha_deteccion' => $request->Fecha_inicio_cancer]);
 
+
         /*Bitácora*/
         $usuario = Auth::user();
         event(new UserEvent($usuario, 'Agregar nino_cancer'));
-
         flash('Se ha registrade '. $cancer->nombre . ' de forma exitosa')->success()->important();
-        return redirect()->route('Niño.create_cancer',['id' => $request->partida]);
+        return redirect()->route('Niño.create_cancer',['id' => $request->partida, 'var'=>$request->solicitud]);
+
      
 
     }
@@ -137,7 +143,7 @@ class NinoController extends Controller
         event(new UserEvent($usuario, 'Agregar niño_contacto'));
 
          flash('Se ha registrade '. $contacto->nombre. ' de forma exitosa')->success()->important();
-        return redirect()->route('Niño.create_contacto',['id' => $request->partida]);
+        return redirect()->route('Niño.create_contacto',['id' => $request->partida, 'var'=>$request->solicitud]);
         
     }
     public function store_donacion(Request $request)
@@ -178,9 +184,43 @@ class NinoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $nino=nino::find($request->get('id'));
+        return view('Nino.template.Perfil-niño.editar-insumo')->with('title', 'Editar Insumo')
+            ->with('id',$request->get('id'))
+            ->with('donacion',$request->get('donacion'))
+            ->with('urgencia',$request->get('urgencia'))
+            ->with('don',$request->get('don'))
+            ->with('can',$request->get('can'));
+    }
+     public function edit_cancer( Request $request)
+    {
+        $nino=nino::find($request->get('id'));
+        foreach ($nino->cancers as $key) {
+            if ($key->id==$request->get('can')) {
+                $key->pivot->activar=$request->get('act');
+                $key->pivot->save();
+            }
+        }
+        return redirect()->route('Niño.index');    
+    }
+     public function edit_localizar( Request $request)
+    {
+        $nino=nino::find($request->get('id'));
+
+        foreach ($nino->contactos as $key) {
+            if ($key->nombre=='Estado') {
+                $key->pivot->valor=$request->get('Estado');
+                $key->pivot->save();
+            }
+            if ($key->nombre=='Municipio') {
+                $key->pivot->valor=$request->get('Municipio');
+                $key->pivot->save();
+            }    
+        }
+        return redirect()->route('Niño.index');
+
     }
 
     /**
@@ -194,6 +234,20 @@ class NinoController extends Controller
     {
         //
     }
+    public function update_donacion(Request $request)
+    {
+        $nino=nino::find($request->id);
+          foreach ($nino->donaciones as $key) {
+            if ($key->pivot->id==$request->don) {
+                $key->pivot->status=$request->Status;
+                $key->pivot->urgencia=$request->Urgencia;
+                $key->pivot->comentario=$request->comentario;
+                $key->pivot->cantidad=$request->cantidad;
+                $key->pivot->save();
+            }   
+        }
+        return redirect()->route('Niño.index');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -204,5 +258,13 @@ class NinoController extends Controller
     public function destroy($id)
     {
        
+    }
+    public function destroy_contacto(Request $request) //->delete();  ->detach();
+    {
+       $key=ninocontacto::find($request->get('id'));
+       $key->delete();
+               
+        flash('Se ha eliminado el contacto de forma exitosa')->error()->important();
+        return redirect()->route('Niño.index');
     }
 }

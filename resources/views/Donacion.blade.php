@@ -77,7 +77,6 @@
                     @endif
                 @endif
            @endforeach
-           
         </div> 
         <center>{!! $nino->render() !!}</center>
     </div>

@@ -22,6 +22,7 @@ class AddCancersTabla extends Migration
         //tabla pivote cancer_nino
          Schema::create('nino-cancer', function (Blueprint $table) {
             $table->date('fecha_deteccion');
+            $table->boolean('activar')->default(true);
             $table->integer('cancer_id')->unsigned();
             $table->integer('nino_id');
 

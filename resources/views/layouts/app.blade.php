@@ -16,6 +16,7 @@
     <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
     <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
     @yield('styles')
+    @yield('scripts1')
 </head>
 <body>
     <div id="app" class="container-fluid">

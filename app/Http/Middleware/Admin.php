@@ -28,7 +28,6 @@ class Admin
         else {
             flash('Credenciales incorrectas')->error()->important();
             return redirect()->route('Niño.index');
-            /*redireccionar*/
         }
         
     }

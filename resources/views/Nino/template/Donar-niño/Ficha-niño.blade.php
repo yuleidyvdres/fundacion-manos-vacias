@@ -29,7 +29,6 @@
           @endforeach
       </div>
       <div class="col-sm-6">
-          
           {{$nin->edad() }}
 
           @foreach($nin->contactos as $aux)

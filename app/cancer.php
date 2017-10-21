@@ -13,7 +13,7 @@ class cancer extends Model
 
      public function ninos(){
         return $this->belongsToMany('App\nino','nino-cancer','cancer_id','nino_id')->withTimestamps()
-         							->withPivot('fecha_deteccion')
+         							->withPivot('fecha_deteccion','activar')
                                     ->withTimestamps();
     }
     public function scopeNombre($query, $nombre){
