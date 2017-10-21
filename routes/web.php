@@ -87,12 +87,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 
 	Route::group(['prefix' => 'tipo-cancer'], function(){
 
-		Route::resource('cancer','CancerController');
 		Route::get('cancer/{id}/destroy',[
 				'uses'=>'CancerController@destroy',
-				'as'=>'cancer.destroy'
+				'as'=>'admin.cancer.destroy'
 		]);	
-
+		Route::get('/cancer/{id}/activar', [
+			'uses' => 'CancerController@activar',
+			'as' => 'admin.cancer.activar'
+		]);
+		Route::resource('cancer','CancerController');
 	});
 
 	Route::get('/contacto/{id}/destroy', [
