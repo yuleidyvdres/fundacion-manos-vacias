@@ -27,7 +27,7 @@
                 		<h5>Tipo de Cáncer</h5>
                		</div>
                		<div class="col-sm-6 pc2">
-                		<h5>Fecha de Nacimiento</h5>
+                		<h5>Detección</h5>
                 	</div>
                 </div>
                 @foreach($nino->cancers as $aux)

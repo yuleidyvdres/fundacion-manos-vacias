@@ -48,11 +48,11 @@
 			</div> <!-- fin de insumo -->
 		</div>
 	<center>
-        <input type="submit" value="Agregar Donación" id="btn-agregar" class="btn btn-default btn-md btn-submit">
+		<a  href="{{ route('Niño.index') }}" class="btn btn-default" id="botonSiguienteEstado2">Perfil Niño</a>
 	</center>
 	</br></br>
 	<center>
-		<a  href="{{ route('Niño.index') }}" class="btn btn-default" id="botonSiguienteEstado2">Perfil Niño</a>
+		<input type="submit" value="Agregar Donación" id="btn-agregar" class="btn btn-default btn-md btn-submit">
     </center>
 	</br></br>
 </div>

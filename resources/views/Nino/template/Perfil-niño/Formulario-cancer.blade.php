@@ -6,7 +6,16 @@
 			<div class="cancer-tipo">
 			<div>
 
-			<div class="form-group">
+			  <div class="form-group" style="display: none;">
+						<div class="input-group input-group-md input-capsule">
+							<span class="borde-inc input-group-addon">
+								<i class="fa fa-id-card" aria-hidden="true"></i>
+							</span>
+							<input type="text" class="borde form-control" id="solicitud" name="solicitud" placeholder="Fecha de Diagnóstico del Cáncer" value="{{$var}}" onfocus="this.blur()">
+						</div>
+			  </div>
+
+			 <div class="form-group">
 						<div class="input-group input-group-md input-capsule">
 							<span class="borde-inc input-group-addon">
 								<i class="fa fa-id-card" aria-hidden="true"></i>
@@ -37,12 +46,18 @@
 			  </div>
 			</div>
 		    </div>
-				
+				<?php if ($var=='nuevo') { ?>
 				<center>
-					<a href="{{route('Niño.create_contacto',['id' => $partida])}}" class="btn btn-default" id="botonSiguienteEstado1">Siguiente</a>
-				</center></br>
+					<a href="{{route('Niño.create_contacto',['id' => $partida, 'var'=>'nuevo'])}}" class="btn btn-default" id="botonSiguienteEstado1">Siguiente</a>
+				</center>	
+				<?php } else{ ?>
 				<center>
-		         <input type="submit" value="Agregar Cáncer" id="btn-agregar" class="btn btn-default btn-md btn-submit">
+					<a  href="{{ route('Niño.index') }}" class="btn btn-default" id="botonSiguienteEstado2">Perfil Niño</a>
+   			    </center>
+				<?php } ?>
+				</br>
+				<center>
+		        <input type="submit" value="Agregar Cáncer" id="btn-agregar" class="btn btn-default btn-md btn-submit">
 		        </center>
 		        </br></br>
 				

@@ -1,5 +1,5 @@
 
-    <div class="container-fluid ">
+    <div class="container">
     <div class="row">
       <div class="col-sm-6 contenedor"><img src="{{ asset('imagenes/cancer.jpg') }}" style="width: 100%;" alt="cancer"></div>
       <div class="col-sm-6" style="padding-top: 4%; padding-right: 5%; padding-left: 5%;">

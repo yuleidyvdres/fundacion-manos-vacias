@@ -52,7 +52,34 @@ Route::group(['prefix' => 'Perfil', 'middleware' => ['auth']], function(){
 				'uses'=>'NinoController@store_donacion',
 				'as'=>'Niño.store_donacion'
     ]);	
-    //--------------------------------------------------  
+    //-------------------------------------------------- 
+    //---------------- Eliminar contactos --------------
+    Route::get('Niño/destroy-contacto',[
+				'uses'=>'NinoController@destroy_contacto',
+				'as'=>'Niño.destroy_contacto'
+	]);	
+	//------------------------------------------------
+	//----------------- Editar cancer ---------------
+	Route::get('Niño/edit-cancer',[
+				'uses'=>'NinoController@edit_cancer',
+				'as'=>'Niño.edit_cancer'
+	]);
+	//----------------------------------------------
+	//------------- Editar estado y municipio ------
+	Route::get('Niño/edit-localizar',[
+				'uses'=>'NinoController@edit_localizar',
+				'as'=>'Niño.edit_localizar'
+	]);
+	//----------------------------------------------
+	//------------- Editar Donaciones ------
+	Route::get('Niño/edit-donaciones',[
+				'uses'=>'NinoController@edit',
+				'as'=>'Niño.edit_donaciones'
+	]);
+	Route::post('Niño/update-donacion',[
+				'uses'=>'NinoController@update_donacion',
+				'as'=>'Niño.update_donacion'
+    ]);
 });//fin grupo rutas ninno
 
 Route::group(['prefix' => 'Donacion'], function(){
