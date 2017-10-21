@@ -17,6 +17,7 @@ class AddDonacionesTabla extends Migration
             $table->increments('id');
             $table->string('nombre',100)->unique();
             $table->enum('tipo',['Medicamento','Insumo']);
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
 

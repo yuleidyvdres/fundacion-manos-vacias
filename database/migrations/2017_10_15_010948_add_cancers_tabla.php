@@ -16,6 +16,7 @@ class AddCancersTabla extends Migration
         Schema::create('cancers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre',30)->unique();
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
 

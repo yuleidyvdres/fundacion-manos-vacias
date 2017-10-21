@@ -113,6 +113,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 		'uses' => 'DonacionesController@search',
 		'as'   => 'admin.donaciones.search'
 	]);
+	Route::get('/donacion/{id}/activar', [
+		'uses' => 'DonacionesController@activar',
+		'as' => 'admin.donacion.activar'
+	]);
 	Route::resource('donaciones', 'DonacionesController');
 
 	Route::get('/usuario/{id}/destroy', [
@@ -124,4 +128,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 		'as'   => 'admin.usuarios.search'
 	]);
 	Route::resource('usuarios', 'UsuariosController');
+
 });
