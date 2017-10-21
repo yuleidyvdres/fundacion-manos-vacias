@@ -8,7 +8,11 @@
 @endsection
 @section('content')
     @include('layouts.common.navbar')
-    @include('flash::message')
+
+    <center class="alert-width">
+        @include('flash::message')
+    </center>
+    
     <section class="row">
         <div id="div-esperanza" class="col-xs-12 col-sm-12 img-responsive">
             <div>
