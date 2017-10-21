@@ -31,7 +31,10 @@ class NinoController extends Controller
     public function perfil_publico(Request $request)
     {
        $nino=nino::find($request->get('id'));  
-       return view('Nino.Donar-perfil-niño')->with('title', 'Perfil-Público')->with('nino', $nino);;
+       $dona = new donacion();
+       $act = false;
+       /*return view('Nino.Donar-perfil-niño')->with('title', 'Perfil-Público')->with('nino', $nino);*/
+       return view('Nino.Donar-perfil-niño')->with('title', 'Perfil-Público')->with('nino', $nino)->with('dona', $dona)->with('act', $act); 
     }
 
     /**
@@ -159,6 +162,25 @@ class NinoController extends Controller
         $ninos = nino::BuscarNino($request->estado, $request->edad)->paginate(6);
         
         return view('Donacion')->with('title', 'Donaciones')->with('nino', $ninos)->with('edad', $request->edad);
+    }
+
+    public function buscarDonacion (Request $request) {
+        
+        if($request->nombre == null) {
+            return redirect()->route('Niño.perfil_publico',['id' => $request->id]);
+        }
+        else {
+            $nino = nino::find($request->id);
+            $act = false;
+            $dona = donacion::join('nino-donacion', 'donaciones_id', '=', 'donaciones.id')
+                        ->join('ninos', 'ninos.id', '=', 'nino-donacion.nino_id')
+                        ->select('donaciones.nombre as don_nom','donaciones.tipo','nino-donacion.urgencia', 'nino-donacion.descripcion', 'nino-donacion.status', 'nino-donacion.comentario')
+                        ->where('donaciones.nombre', 'LIKE', "%".$request->nombre."%")->get();
+            if($dona) {
+                $act = true;
+            }
+            return view('Nino.Donar-perfil-niño')->with('title', 'Perfil-Público')->with('nino', $nino)->with('dona', $dona)->with('act', $act); 
+        }
     }
 
     /**

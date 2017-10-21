@@ -70,6 +70,10 @@ Route::group(['prefix' => 'Donacion'], function(){
 				   'uses'=>'NinoController@perfil_publico',
 				   'as'=>'Niño.perfil_publico'
 	   ]);
+	   Route::get('Niño/Perfli-publico/donacion', [
+			'uses' => 'NinoController@buscarDonacion',
+			'as' => 'public.donaciones.search'
+	   ]);
    });
 
 //------------------------ Representante --------------------------- 
