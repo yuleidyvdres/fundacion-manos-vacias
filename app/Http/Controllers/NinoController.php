@@ -147,15 +147,48 @@ class NinoController extends Controller
     {
         $nino= nino::find($request->partida);
         $donacion=donacion::find($request->Donacion);
-        //-------------- Donaciones
-        $nino->donaciones()->attach($request->Donacion, ['status' => 'No-recibido', 'urgencia' => $request->Urgencia,'descripcion'=>$request->DP, 'cantidad'=>$request->cantidad]);
+        
+        /****Validar si el niño ya tiene la donación, ésta ya haya sido recibida****/
+        $nino_donacion = nino::join('nino-donacion', 'ninos.id', '=', 'nino_id')
+                               ->where('nino_id', '=', $request->partida)->get();
 
-        /*Bitácora*/
-        $usuario = Auth::user();
-        event(new UserEvent($usuario, 'Agregar niño_donacion'));
+        $band = true;
 
-        flash('Se ha registrade '. $donacion->nombre. ' de forma exitosa')->success()->important();
-        return redirect()->route('Niño.create_donacion',['id' => $request->partida]);
+        if($nino_donacion) {
+            foreach($nino_donacion as $nin){
+                if($nin->status == 'No-recibido' && $nin->donaciones_id == $request->Donacion) {
+                    $band = false;
+                    break;
+                }
+            }
+            if($band) {
+                //-------------- Donaciones
+                $nino->donaciones()->attach($request->Donacion, ['status' => 'No-recibido', 'urgencia' => $request->Urgencia,'descripcion'=>$request->DP, 'cantidad'=>$request->cantidad]);
+        
+                /*Bitácora*/
+                $usuario = Auth::user();
+                event(new UserEvent($usuario, 'Agregar niño_donacion'));
+        
+                flash('Se ha registrado '. $donacion->nombre. ' de forma exitosa')->success()->important();
+                return redirect()->route('Niño.create_donacion',['id' => $request->partida]);
+            }
+            else {
+                flash('La donación '. $donacion->nombre. ' ya se encuentra registrada y con status "No recibido"')->error()->important();
+                return redirect()->route('Niño.create_donacion',['id' => $request->partida]);
+            }
+        }
+        else {
+            //-------------- Donaciones
+            $nino->donaciones()->attach($request->Donacion, ['status' => 'No-recibido', 'urgencia' => $request->Urgencia,'descripcion'=>$request->DP, 'cantidad'=>$request->cantidad]);
+            
+            /*Bitácora*/
+            $usuario = Auth::user();
+            event(new UserEvent($usuario, 'Agregar niño_donacion'));
+    
+            flash('Se ha registrado '. $donacion->nombre. ' de forma exitosa')->success()->important();
+            return redirect()->route('Niño.create_donacion',['id' => $request->partida]);
+        }
+        
     }
 
     public function search (Request $request) {
