@@ -35,10 +35,9 @@ class nino extends Model
 
     public function scopeBuscarNino($query, $estado, $edad){
     	if (trim($estado)!="seleccionar") {
-            $ninos = nino::join('nino-contacto','ninos.id', '=', 'nino_id') 
-                           ->where('valor', 'like', "%".$estado."%");
-
-    
+            $ninos = nino::whereHas('contactos', function($q) use($estado){
+                $q->where('valor', 'LIKE', "%".$estado."%");
+            });
             return $ninos;
         }
         else{

@@ -22,6 +22,11 @@
            <hr>
           <h4>Tipo de Cáncer</h4>
           <?php $var=0; ?>
+          @if($nin->cancers)
+                      
+          @else 
+            dd("no");
+          @endif
           @foreach($nin->cancers as $aux)
             <?php if ($var==0) { $var++;?>
               <p> {{$aux->nombre}} </p> 
