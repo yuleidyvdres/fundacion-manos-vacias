@@ -42,8 +42,7 @@ class nino extends Model
         }
         else{
             if($edad!=null){
-                $ninos = nino::select('*');
-                
+                $ninos = nino::select('*');     
                 return $ninos;
             }
         }

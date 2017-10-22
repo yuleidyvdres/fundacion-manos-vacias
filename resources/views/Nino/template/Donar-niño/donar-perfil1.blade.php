@@ -31,6 +31,7 @@
                 	</div>
                 </div>
                 @foreach($nino->cancers as $aux)
+                 <?php if ($aux->pivot->activar==1) { ?>
                 	<div class="row">
                 		<div class="col-sm-6 pc2">
                 			<p style="text-align: center;"><b>{{$aux->nombre}}</b></p>
@@ -39,6 +40,7 @@
                 			<p style="text-align: center;">{{$aux->pivot->fecha_deteccion}}</p>
                 		</div>
                     </div>
+                 <?php } ?>
            		@endforeach		 
 	</div><!-- Fin-->
 	<div class="col-sm-4 pc3"> <!-- Datos Contacto-->

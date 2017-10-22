@@ -46,7 +46,7 @@
 				<span class="input-group-addon borde-inc" id="inputUsuario">
 			        <i class="fa fa-asterisk" aria-hidden="true"></i>
 			    </span>
-				<input type="number" class="borde form-control" id="cantidad" name="cantidad" placeholder="Cantidad Requerida" value="{{$can}}" max="<?php echo $can?>" required>
+				<input type="number" class="borde form-control" id="cantidad" name="cantidad" placeholder="Cantidad Requerida" value="{{$can}}" max="<?php echo $can?>" min="0" required>
 			</div>
 		</div>
 		<!-- Urgencia -->

@@ -13,7 +13,7 @@
             <center>
                 <form method="GET" action="{{ route('buscar.donacion.publico') }}" class="navbar-form form-width">
                     <div class="form-group">
-                        <div class="input-group input-group-md input-capsule">
+                        <div class="input-group input-group-md input-capsule" style="padding-right: 8px;">
                             <span class="borde-inc input-group-addon">
                                 <i class="fa fa-map-marker" aria-hidden="true"></i>
                             </span>
@@ -68,7 +68,7 @@
         <div class="row">
             <?php $cont=0; ?>
            @foreach($nino as $nin)  
-                @if($edad!=null && $edad== $nin->edad())
+                @if($edad!=null && $edad==$nin->edad())
                     <div class="col-sm-4">@include('Nino.template.Donar-niño.Ficha-niño')</div>
                     <?php $cont++; ?>
                 @else

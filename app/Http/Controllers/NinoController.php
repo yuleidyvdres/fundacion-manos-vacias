@@ -60,8 +60,14 @@ class NinoController extends Controller
     {
       $cancer=cancer::orderBY('nombre','ASC')->pluck('nombre','id');
       $nino=nino::find($request->get('id'));
+      $var=0;
+      foreach ($nino->cancers as $key) {
+          $aux[$var]=$key->nombre;
+          $var++;
+      }
+      $can=$cancer->diff($aux);
       return view('Nino.cancer-nino')->with('title', 'Perfil Niños')
-            ->with('cancer',$cancer)
+            ->with('cancer',$can)
             ->with('partida',$request->get('id'))
             ->with('var',$request->get('var')) //rebisar 
             ->with('nacimiento',$nino->fecha_nacimiento);
@@ -79,8 +85,18 @@ class NinoController extends Controller
      public function create_donacion(Request $request)
     {
       $donacion=donacion::orderBY('nombre','ASC')->pluck('nombre','id');
+      $nino=nino::find($request->get('id'));
+      $var=0;
+      foreach ($nino->donaciones as $key) {
+        if ($key->pivot->status=='No-recibido') {
+           $aux[$var]=$key->nombre;
+           $var++;
+        }   
+      }
+      $don=$donacion->diff($aux);
+
       return view('Nino.donacion-nino')->with('title', 'Perfil Niños')
-            ->with('donacion',$donacion)
+            ->with('donacion',$don)
             ->with('partida',$request->get('id'));
     }
     /**
@@ -163,8 +179,9 @@ class NinoController extends Controller
 
     public function search (Request $request) {
         $ninos = nino::BuscarNino($request->estado, $request->edad)->paginate(6);
-        
-        return view('Donacion')->with('title', 'Donaciones')->with('nino', $ninos)->with('edad', $request->edad);
+        return view('Donacion')->with('title', 'Donaciones')
+                               ->with('nino', $ninos)
+                               ->with('edad', $request->edad);
     }
 
     /**

@@ -27,7 +27,7 @@
 							  <span class="input-group-addon borde-inc" id="inputUsuario">
 			             		<i class="fa fa-asterisk" aria-hidden="true"></i>
 			                  </span>
-					      <input type="number" class="borde form-control" id="cantidad" name="cantidad" placeholder="Cantidad Requerida" required>
+					      <input type="number" class="borde form-control" id="cantidad" name="cantidad" placeholder="Cantidad Requerida" min=1 required>
 					    </div>
 				    </div>
 
