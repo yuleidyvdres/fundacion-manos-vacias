@@ -36,7 +36,8 @@
                         <tr>
                             <th>ID</th>
                             <th>Nombre Atributo Contacto</th>
-                            <th>Eliminar</th>
+                            <th>Activo</th>
+                            <th>Eliminar/Deshacer</th>
                         </tr>
                     </thead> 
                     <tbody>
@@ -44,8 +45,13 @@
                             <tr>
                                 <td>{{ $cont->id }}</td>
                                 <td>{{ $cont->nombre }}</td>
+                                <td>{{ $cont->active }}</td>
                                 <td>
-                                    <a href="{{ route('admin.contacto.destroy', $cont->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                    @if($cont->active)
+                                        <a href="{{ route('admin.contacto.destroy', $cont->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                    @else
+                                        <a href="{{ route('admin.contacto.activar', $cont->id) }}" class="btn btn-success btn-sm"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

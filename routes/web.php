@@ -26,7 +26,7 @@ Route::get('Niño/buscar', [
 	'as' => 'buscar.donacion.publico'
  ]);
 
-Route::group(['prefix' => 'Perfil', 'middleware' => ['auth']], function(){
+Route::group(['prefix' => 'Perfil', 'middleware' => ['auth','representante']], function(){
 	Route::resource('Niño','NinoController');
 //------------------- Formulario Ninos ---------------------
 //-----------------------------------------------------------
@@ -88,16 +88,21 @@ Route::group(['prefix' => 'Perfil', 'middleware' => ['auth']], function(){
 });//fin grupo rutas ninno
 
 Route::group(['prefix' => 'Donacion'], function(){
- //----------------Donacion Parte publica -----------
-    Route::get('Niño/donacion-publica',[
-				'uses'=>'NinoController@donacion_publica',
-				'as'=>'Niño.donacion_publica'
-	]);
-	 Route::get('Niño/Perfil-publico',[
-				'uses'=>'NinoController@perfil_publico',
-				'as'=>'Niño.perfil_publico'
-	]);
+	//----------------Donacion Parte publica -----------
+	   Route::get('Niño/donacion-publica',[
+				   'uses'=>'NinoController@donacion_publica',
+				   'as'=>'Niño.donacion_publica'
+	   ]);
+		Route::get('Niño/Perfil-publico',[
+				   'uses'=>'NinoController@perfil_publico',
+				   'as'=>'Niño.perfil_publico'
+	   ]);
+	   Route::get('Niño/Perfli-publico/donacion', [
+			'uses' => 'NinoController@buscarDonacion',
+			'as' => 'public.donaciones.search'
+	   ]);
 });
+
 //------------------------ Representante --------------------------- 
 Route::post('representante/auth', [
 	'uses' => 'RepresentanteController@authentificate',
@@ -113,12 +118,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 
 	Route::group(['prefix' => 'tipo-cancer'], function(){
 
-		Route::resource('cancer','CancerController');
 		Route::get('cancer/{id}/destroy',[
 				'uses'=>'CancerController@destroy',
-				'as'=>'cancer.destroy'
+				'as'=>'admin.cancer.destroy'
 		]);	
-
+		Route::get('/cancer/{id}/activar', [
+			'uses' => 'CancerController@activar',
+			'as' => 'admin.cancer.activar'
+		]);
+		Route::resource('cancer','CancerController');
 	});
 
 	Route::get('/contacto/{id}/destroy', [
@@ -128,6 +136,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 	Route::post('/contacto/search', [
 		'uses' => 'ContactoController@search',
 		'as'   => 'admin.contacto.search'
+	]);
+	Route::get('/contacto/{id}/activar', [
+		'uses' => 'ContactoController@activar',
+		'as' => 'admin.contacto.activar'
 	]);
 	Route::resource('contacto', 'ContactoController');
 
@@ -139,6 +151,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 		'uses' => 'DonacionesController@search',
 		'as'   => 'admin.donaciones.search'
 	]);
+	Route::get('/donacion/{id}/activar', [
+		'uses' => 'DonacionesController@activar',
+		'as' => 'admin.donacion.activar'
+	]);
 	Route::resource('donaciones', 'DonacionesController');
 
 	Route::get('/usuario/{id}/destroy', [
@@ -149,5 +165,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 		'uses' => 'UsuariosController@search',
 		'as'   => 'admin.usuarios.search'
 	]);
+	Route::get('/usuarios/{id}/activar', [
+		'uses' => 'UsuariosController@activar',
+		'as' => 'admin.usuarios.activar'
+	]);
 	Route::resource('usuarios', 'UsuariosController');
+
 });

@@ -28,6 +28,7 @@ class UserRequest extends FormRequest
             'nombre' => 'min:4|max:30|required',
             'apellido' => 'min:4|max:20|required',
             'password' => 'min:6|max:12|required',
+            'password_confirmation' => 'min:6|max:12|same:password',
             'email' => 'unique:users|required'
         ];
     }

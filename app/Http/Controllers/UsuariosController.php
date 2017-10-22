@@ -41,10 +41,21 @@ class UsuariosController extends Controller
 
     public function destroy ($id) {
         $usuario = User::find($id);
-        $usuario->delete();
+        $usuario->active = false;
+        $usuario->save();
 
         event(new UserEvent($usuario, 'Eliminar usuario'));
         flash('Se ha eliminado al ' .$usuario->rol. ' '.$usuario->nombre)->error()->important();
+        return redirect()->route('usuarios.index');
+    }
+
+    public function activar ($id) {
+        $usuario = User::find($id);
+        $usuario->active = true;
+        $usuario->save();
+
+        event(new UserEvent($usuario, 'Actualizar usuario'));
+        flash('Se ha reactivado al ' .$usuario->rol. ' '.$usuario->nombre)->success()->important();
         return redirect()->route('usuarios.index');
     }
 

@@ -16,6 +16,7 @@ class AddContactosTabla extends Migration
         Schema::create('contactos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre',30)->unique();
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
 

@@ -35,6 +35,10 @@ class User extends Authenticatable
         return $this->rol === 'Admin';
     }
 
+    public function isRepresentante () {
+        return $this->rol === 'Representante';
+    }
+
     public function scopeApellido($query, $apellido){
     	if (trim($apellido)!="") {
     		$query->where("apellido","LIKE","%$apellido%");

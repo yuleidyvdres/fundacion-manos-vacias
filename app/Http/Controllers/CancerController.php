@@ -94,11 +94,23 @@ class CancerController extends Controller
     public function destroy($id)
     {
          $cancer= cancer::find($id);
-         $cancer->delete();
+         $cancer->active = false;
+         $cancer->save();
          $user = new User();
          
          event(new UserEvent($user, 'Eliminar tipo cáncer'));
-        flash('Se ha eliminado '. $cancer->nombre . ' de forma exitosa')->error()->important();
+         flash('Se ha eliminado '. $cancer->nombre . ' de forma exitosa')->error()->important();
+         return redirect()->route('cancer.index');
+    }
+
+    public function activar ($id) {
+        $cancer= cancer::find($id);
+        $cancer->active = true;
+        $cancer->save();
+        $user = new User();
+        
+        event(new UserEvent($user, 'Actualizar tipo cáncer'));
+        flash('Se ha reactivado '. $cancer->nombre . ' de forma exitosa')->success()->important();
         return redirect()->route('cancer.index');
     }
 }

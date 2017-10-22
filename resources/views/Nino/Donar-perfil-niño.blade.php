@@ -3,6 +3,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/donacion-perfil-nino.css') }}">
 	<link href="{{ asset('css/login.css') }}" rel="stylesheet">
     <link href="{{ asset('css/common.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin/form-style.css') }}" rel="stylesheet">
     
 @endsection
 
