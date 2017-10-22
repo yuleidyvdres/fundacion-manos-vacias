@@ -61,6 +61,7 @@ class NinoController extends Controller
       $cancer=cancer::orderBY('nombre','ASC')->pluck('nombre','id');
       $nino=nino::find($request->get('id'));
       $var=0;
+      $aux='';
       foreach ($nino->cancers as $key) {
           $aux[$var]=$key->nombre;
           $var++;
@@ -87,6 +88,7 @@ class NinoController extends Controller
       $donacion=donacion::orderBY('nombre','ASC')->pluck('nombre','id');
       $nino=nino::find($request->get('id'));
       $var=0;
+      $aux='';
       foreach ($nino->donaciones as $key) {
         if ($key->pivot->status=='No-recibido') {
            $aux[$var]=$key->nombre;

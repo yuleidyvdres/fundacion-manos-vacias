@@ -49,11 +49,12 @@
                                 @if($cont == 0 && $don->pivot->urgencia == 'Alta' && $don->pivot->status == 'No-recibido')
                                     <?php $cont++; ?>
                                     <span class="label label-info" id="donacion_urg">Donación: {{ $don->nombre }}</span>
+                                    <p>Tipo: {{ $don->tipo }}</p>
                                 @endif
                             @endforeach
                         </div>
                         <div class="col-xs-12 col-sm-12">
-                            <p>Tipo: {{ $don->tipo }}</p>
+                            
                             <p>Nombre: {{ $nino->nombre }}</p>
                             <p>Apellido: {{ $nino->apellido }}</p>
                             <a href="{{ route('Niño.perfil_publico', ['id' => $nino->id]) }}" type="button" class="btn-mas">Saber más</a>
