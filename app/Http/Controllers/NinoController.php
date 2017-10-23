@@ -272,7 +272,7 @@ class NinoController extends Controller
                 $act = true;
             }
             return view('Nino.Ninos')->with('title', 'Perfil-Niño')
-                      ->with('nino', $nino)
+                      ->with('nino', $nino->where("users_id",Auth::user()->id))
                       ->with('dona', $dona)
                       ->with('act', $act); 
         }

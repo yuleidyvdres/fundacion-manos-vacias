@@ -19,15 +19,18 @@
             
 	        var input = document.getElementById('valor_cont');
 	        
-	        if (cod==7) {
-	        	input.setAttribute("minlength", "11");
-	        	input.setAttribute("maxlength", "11"); 
+	        if (cod==7) { //telefono
+	        	input.setAttribute("title", "El Téfono debe ser de 11 Números"); 
+	        	input.setAttribute("pattern", "[0-9]{11}"); 
+
 	        }else{
 	        	input.setAttribute("minlength", "1");
 	        	input.setAttribute("maxlength", "60");
+	        	input.removeAttribute("pattern");
+	        	input.removeAttribute("title"); 
 	        }
 
-	        if(cod==6){
+	        if(cod==6){ //email
 	        	input.setAttribute("type", "email");
 	        }else{
 	        	input.setAttribute("type", "text");
