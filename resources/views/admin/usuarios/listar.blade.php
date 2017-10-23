@@ -39,7 +39,8 @@
                             <th>Apellido</th>
                             <th>Correo</th>
                             <th>Tipo</th>
-                            <th>Eliminar</th>
+                            <th>Activo</th>
+                            <th>Eliminar/Deshacer</th>
                         </tr>
                     </thead> 
                     <tbody>
@@ -50,8 +51,14 @@
                                 <td>{{ $usuario->apellido }}</td>
                                 <td>{{ $usuario->email }}</td>
                                 <td>{{ $usuario->rol }}</td>
+                                <td>{{ $usuario->active }}</td>
                                 <td>
-                                    <a href="{{ route('admin.usuarios.destroy', $usuario->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                    @if($usuario->active)
+                                        <a href="{{ route('admin.usuarios.destroy', $usuario->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                    @else
+                                        <a href="{{ route('admin.usuarios.activar', $usuario->id) }}" class="btn btn-success btn-sm"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>
+                                    @endif
+                                    
                                 </td>
                             </tr>
                         @endforeach                        

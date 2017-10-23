@@ -22,6 +22,11 @@
            <hr>
           <h4>Tipo de Cáncer</h4>
           <?php $var=0; ?>
+          @if($nin->cancers)
+                      
+          @else 
+            dd("no");
+          @endif
           @foreach($nin->cancers as $aux)
             <?php if ($var==0) { $var++;?>
               <p> {{$aux->nombre}} </p> 
@@ -58,7 +63,7 @@
       <?php $var=0; ?>
      @foreach($nin->donaciones as $aux)
         <?php if ($aux->pivot->urgencia=='Alta' and $var==0) { $var++;?>
-         <h4 style="color:#FF2714;"><b>Se necesita Donacion Urgente</b></h4>
+         <h4 style="color:#FF2714;"><b>Se necesita Donación Urgente</b></h4>
         <?php }else{  
           if($var==0){ $var++; ?>
          <h4>Haz Feliz a un Niño, ¡Ayuda!</h4>

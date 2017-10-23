@@ -8,7 +8,11 @@
 @endsection
 @section('content')
     @include('layouts.common.navbar')
-    @include('flash::message')
+
+    <center class="alert-width">
+        @include('flash::message')
+    </center>
+    
     <section class="row">
         <div id="div-esperanza" class="col-xs-12 col-sm-12 img-responsive">
             <div>
@@ -33,35 +37,41 @@
     </section>
     <?php $cont_n = 0; ?>
     @if(count($ninos) > 1)   
-        <section class="row" id="urgent-supply">
+        <section class="row center-block" id="urgent-supply">
             @foreach($ninos as $nino)
                 @if($cont_n < 2)
-                    <?php $cont = 0; ?>
-                    <div class="col-xs-12 col-sm-12 col-md-5 child-card" id="right-move">
-                        <div class="urgente">
-                            <p>Urgente</p> 
-                        </div>
-                        <div class="col-xs-12 col-sm-12 sep">
-                            <img src="{{ asset('imagenes/help.png') }}" alt="Ayuda" class="ayuda">
-                        </div>
-                        <div class="col-xs-12 col-sm-12 sep">
-                            @foreach($nino->donaciones as $don)
-                                @if($cont == 0 && $don->pivot->urgencia == 'Alta' && $don->pivot->status == 'No-recibido')
-                                    <?php $cont++; ?>
-                                    <span class="label label-info" id="donacion_urg">Donación: {{ $don->nombre }}</span>
+                    <?php $cont = 0; $band=false; $donacion; ?>
+                    @foreach($nino->donaciones as $don)
+                        @if($cont == 0 && $don->pivot->urgencia == 'Alta' && $don->pivot->status == 'No-recibido')
+                            <?php $band=true; ?>
+                            <?php $donacion = $don->nombre; ?>
+                            <?php $cont++; ?>
+                            @break;
+                        @endif
+                    @endforeach
+                    @if($band)
+                        <center>
+                            <div class="col-xs-12 col-sm-12 col-md-5 child-card" id="right-move">
+                                <div class="urgente">
+                                    <p>Urgente</p> 
+                                </div>
+                                <div class="col-xs-12 col-sm-12 sep">
+                                    <img src="{{ asset('imagenes/help.png') }}" alt="Ayuda" class="ayuda">
+                                </div>
+                                <div class="col-xs-12 col-sm-12 sep">
+                                    
+                                </div>
+                                <div class="col-xs-12 col-sm-12">
+                                    <p>Nombre: {{ $nino->nombre }}</p>
+                                    <p>Apellido: {{ $nino->apellido }}</p>
                                     <p>Tipo: {{ $don->tipo }}</p>
-                                @endif
-                            @endforeach
-                        </div>
-                        <div class="col-xs-12 col-sm-12">
-                            
-                            <p>Nombre: {{ $nino->nombre }}</p>
-                            <p>Apellido: {{ $nino->apellido }}</p>
-                            <a href="{{ route('Niño.perfil_publico', ['id' => $nino->id]) }}" type="button" class="btn-mas">Saber más</a>
-                            <!--button type="button" class="btn-mas" href="{{ url('/') }}">Saber más</button-->
-                        </div>
-                    </div>
-                    <?php $cont_n++; ?>
+                                    <p><span class="label label-info" id="donacion_urg">Donación: {{ $donacion }}</span></p>
+                                    <a href="{{ route('Niño.perfil_publico', ['id' => $nino->id]) }}" type="button" class="btn-mas">Saber más</a>
+                                </div>
+                            </div>
+                        </center>
+                        <?php $cont_n++; $band=false; ?>
+                    @endif
                 @endif
             @endforeach
         </section>

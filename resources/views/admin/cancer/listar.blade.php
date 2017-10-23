@@ -36,7 +36,8 @@
                         <tr>
                             <th>ID</th>
                             <th>Tipo de Cáncer</th>
-                            <th>Eliminar</th>
+                            <th>Activo</h>
+                            <th>Eliminar/Deshacer</th>
                         </tr>
                     </thead> 
                     <tbody>
@@ -44,9 +45,14 @@
                             <tr>
                                <td>{{$can->id}}</td>
                                <td>{{$can->nombre}}</td>
+                               <td>{{$can->active}}</td>
                                <td>
-                                    <a href="{{ route('cancer.destroy', $can->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                </td>
+                                    @if($can->active)
+                                        <a href="{{ route('admin.cancer.destroy', $can->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                    @else
+                                        <a href="{{ route('admin.cancer.activar', $can->id) }}" class="btn btn-success btn-sm"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>
+                                    @endif
+                               </td>
                             </tr>
                         @endforeach
                     </tbody>

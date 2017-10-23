@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function urgencias()
     {
-        $ninos = nino::all();
+        $ninos = nino::all()->shuffle();
         
         return view('homepage')->with('ninos', $ninos);
     }

@@ -26,8 +26,7 @@ class Admin
             return $next($request);
         }
         else {
-            flash('Credenciales incorrectas')->error()->important();
-            return redirect()->route('Niño.index');
+            return redirect()->route('homepage');
         }
         
     }

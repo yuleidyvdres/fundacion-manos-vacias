@@ -91,7 +91,9 @@ endsection-->
     <section class="row">
         <div class="col-xs-12 col-sm-offset-2 col-sm-4">
             <!--h3>Regístrate</h3-->
+            
             @include('flash::message')
+        
 
             @if($errors->count() > 0)
                 <div class="alert alert-danger" role="lert">
