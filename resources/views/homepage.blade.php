@@ -9,12 +9,13 @@
 @section('content')
     @include('layouts.common.navbar')
 
-    <center class="alert-width">
-        @include('flash::message')
-    </center>
+    
     
     <section class="row">
         <div id="div-esperanza" class="col-xs-12 col-sm-12 img-responsive">
+            <center class="alert-width">
+                @include('flash::message')
+            </center>
             <div>
                 <h3>Tiende una mano y llena de esperanza una vida</h3>
             </div>

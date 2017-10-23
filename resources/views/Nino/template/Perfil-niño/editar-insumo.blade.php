@@ -60,7 +60,7 @@
 			</select>
 		</div>
 		<br>
-		<!-- Status -->
+		<!-- Status 
   		<div class="input-group input-group-md input-capsule" style="width: 100%; padding: 10px;">
 			<label for="Avance-Cancer" style="text-align: left; width: 100%;">Estatus</label>
 			<select class="form-control" id="Status" name="Status" required>
@@ -68,7 +68,7 @@
 				<option>Recibido</option>
 			</select>
 		</div>
-		<br>
+		<br>-->
 		<!-- Comentario -->
 		<div class="input-group input-group-md input-capsule">
 			<span class="borde-inc input-group-addon">

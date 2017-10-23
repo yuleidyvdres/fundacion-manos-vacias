@@ -1,4 +1,6 @@
-
+<center class="alert-width">
+                @include('flash::message')
+</center>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - -->
 <form method="POST" class="form-width" action="{{ route('Niño.store') }}"><!--inicio Datos Generales-->
      {{ csrf_field() }} 

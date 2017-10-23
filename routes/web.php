@@ -85,6 +85,16 @@ Route::group(['prefix' => 'Perfil', 'middleware' => ['auth','representante']], f
 				'uses'=>'NinoController@update_donacion',
 				'as'=>'Niño.update_donacion'
     ]);
+    //------------------Buscar Donacion----------------------------
+    Route::get('Niño/Buscar-donacion', [
+			'uses' => 'NinoController@buscarD',
+			'as' => 'Niño.buscarD'
+	]);
+	//------------- Editar situacion actual ------
+	Route::get('Niño/edit-situacion',[
+				'uses'=>'NinoController@edit_situacion',
+				'as'=>'Niño.edit_situacion'
+	]);
 });//fin grupo rutas ninno
 
 Route::group(['prefix' => 'Donacion'], function(){

@@ -3,7 +3,32 @@
      <!-- Datos Personales-->	
   <div class="row perfil1">
     <center>
-    	<h3>{{ ucfirst(trans($nin->nombre)) }} {{ ucfirst(trans($nin->apellido)) }}</h3>
+    	<h3 style="padding-bottom: 0px;">{{ ucfirst(trans($nin->nombre)) }} {{ ucfirst(trans($nin->apellido)) }}</h3>
+    	<center>
+    	<form method="GET" class="form-width" action="{{ route('Niño.edit_situacion') }}">
+    		 <div class="form-group" style="display: none;">
+				<div class="input-group input-group-md input-capsule">
+					<span class="borde-inc input-group-addon">
+						<i class="fa fa-id-card" aria-hidden="true"></i>
+					</span>
+					<input type="text" class="borde form-control" id="id" name="id" placeholder="Fecha de Diagnóstico del Cáncer" value="{{$nin->id}}" onfocus="this.blur()">
+				</div>
+			 </div>
+    		<div class="form-group">
+			  	<div class="input-group input-group-md input-capsule" style="width: 80%;">
+			      <textarea class="form-control" rows="1" id="SA" name="SA" required >
+			      	<?php echo $nin->situacion_actual ?>
+			      </textarea>
+			    </div>
+		   </div>
+		   <div class="form-group">
+				<center>
+				 <input type="submit" value="Situación Actual" id="btn-agregar" class="btn btn-default btn-md btn-submit">
+				</center>			
+			</div>
+    	</form>
+        </center>
+        <hr>
     </center> 
 		  <div class="col-sm-3 pc1"><!-- Datos Personales-->
 		    <center>
@@ -95,7 +120,7 @@
 				      @foreach($nin->cancers as $aux)
 				      <tr>
 				        <td><p><b>{{$aux->nombre}}</b></p></td>
-				        <td><p>{{$aux->pivot->fecha_deteccion}}</p></td>  
+				        <td style="padding-left: 0px;"><p>{{$aux->pivot->fecha_deteccion}}</p></td>  
 				         <td>
 				         	<?php if($aux->pivot->activar==1){ ?>
 								<a href="{{route('Niño.edit_cancer',['id' => $nin->id, 'can'=>$aux->id, 'act'=>'0'])}}"  class="btn btn-success btn-sm active">

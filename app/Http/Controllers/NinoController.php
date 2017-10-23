@@ -18,7 +18,9 @@ class NinoController extends Controller
       public function index(Request $request)
     {
       $nino=nino::all();
+      $act=false;
       return view('Nino.Ninos')->with('title', 'Perfil Niños')
+                ->with('act', $act)
                 ->with('nino',$nino->where("users_id",Auth::user()->id));
     }
 
@@ -61,15 +63,16 @@ class NinoController extends Controller
 
     public function create_cancer(Request $request)
     {
-      $cancer=cancer::orderBY('nombre','ASC')->pluck('nombre','id');
+      $cancer=cancer::orderBY('nombre','ASC')->where('active',1)->pluck('nombre','id');
       $nino=nino::find($request->get('id'));
       $var=0;
-      $aux='';
+      $aux[0]="hola amigos";
       foreach ($nino->cancers as $key) {
           $aux[$var]=$key->nombre;
           $var++;
       }
       $can=$cancer->diff($aux);
+
       return view('Nino.cancer-nino')->with('title', 'Perfil Niños')
             ->with('cancer',$can)
             ->with('partida',$request->get('id'))
@@ -79,7 +82,7 @@ class NinoController extends Controller
     }
      public function create_contacto(Request $request)
     {
-      $contacto=contacto::orderBY('nombre','ASC')->pluck('nombre','id')->diff(["Estado","Municipio"]);
+      $contacto=contacto::orderBY('nombre','ASC')->where('active',1)->pluck('nombre','id')->diff(["Estado","Municipio"]);
       return view('Nino.contacto-nino')->with('title', 'Perfil Niños')
             ->with('contacto',$contacto)
             ->with('partida',$request->get('id'))
@@ -88,10 +91,10 @@ class NinoController extends Controller
     }
      public function create_donacion(Request $request)
     {
-      $donacion=donacion::orderBY('nombre','ASC')->pluck('nombre','id');
+      $donacion=donacion::orderBY('nombre','ASC')->where('active',1)->pluck('nombre','id');
       $nino=nino::find($request->get('id'));
       $var=0;
-      $aux='';
+      $aux[0]="hola amigos";
       foreach ($nino->donaciones as $key) {
         if ($key->pivot->status=='No-recibido') {
            $aux[$var]=$key->nombre;
@@ -113,27 +116,33 @@ class NinoController extends Controller
     public function store(Request $request)
     {
         $nino= new nino();
-        //---------------- Datos Generales
-        $nino->id=$request->norpartida;
-        $nino->nombre=$request->nombre;
-        $nino->apellido=$request->apellido;
-        $nino->fecha_nacimiento=$request->Fecha_nac;
-        $nino->genero=$request->Sexo;
-        $nino->situacion_actual=$request->SA;
-        $nino->users_id=Auth::user()->id;
-        //$nino->users_id=24356108;
-        /*Bitácora*/
-        $usuario = Auth::user();
-        event(new UserEvent($usuario, 'Agregar niño'));
-        //-------------------------------------------
-        $nino->save();
-        $nino= nino::find($request->norpartida);
-        //--------------- Datos de contacto 
-        $nino->contactos()->attach(3, ['valor' => $request->Estado]);
-        $nino->contactos()->attach(4, ['valor' => $request->Parroquia]);
-        
-        flash('Se ha registrade '. $nino->nombre . ' de forma exitosa')->success()->important();
-        return redirect()->route('Niño.create_cancer',['id' => $request->norpartida, 'var'=>'nuevo']);
+        $confirm = nino::find($request->norpartida);
+        if(!$confirm) {
+          //---------------- Datos Generales
+          $nino->id=$request->norpartida;
+          $nino->nombre=$request->nombre;
+          $nino->apellido=$request->apellido;
+          $nino->fecha_nacimiento=$request->Fecha_nac;
+          $nino->genero=$request->Sexo;
+          $nino->situacion_actual=$request->SA;
+          $nino->users_id=Auth::user()->id;
+          //$nino->users_id=24356108;
+          /*Bitácora*/
+          $usuario = Auth::user();
+          event(new UserEvent($usuario, 'Agregar niño'));
+          //-------------------------------------------
+          $nino->save();
+          $nino= nino::find($request->norpartida);
+          //--------------- Datos de contacto 
+          $nino->contactos()->attach(3, ['valor' => $request->Estado]);
+          $nino->contactos()->attach(4, ['valor' => $request->Parroquia]);
+          
+          flash('Se ha registrado '. $nino->nombre . ' de forma exitosa')->success()->important();
+          return redirect()->route('Niño.create_cancer',['id' => $request->norpartida, 'var'=>'nuevo']);
+        }else{
+          flash('El niño '. $request->norpartida . ' ya existe')->success()->important();
+          return redirect()->route('Niño.create');
+        }
     }
 
     public function store_cancer(Request $request)
@@ -232,12 +241,40 @@ class NinoController extends Controller
             $act = false;
             $dona = donacion::join('nino-donacion', 'donaciones_id', '=', 'donaciones.id')
                         ->join('ninos', 'ninos.id', '=', 'nino-donacion.nino_id')
-                        ->select('donaciones.nombre as don_nom','donaciones.tipo','nino-donacion.urgencia', 'nino-donacion.descripcion', 'nino-donacion.status', 'nino-donacion.comentario')
-                        ->where('donaciones.nombre', 'LIKE', "%".$request->nombre."%")->get();
+                        ->select('donaciones.nombre as don_nom','donaciones.tipo','nino-donacion.urgencia', 'nino-donacion.descripcion', 'nino-donacion.status', 'nino-donacion.comentario','nino-donacion.nino_id')
+                        ->where('donaciones.nombre', 'LIKE', "%".$request->nombre."%")
+                        ->where('nino-donacion.nino_id','=',$request->id)
+                        ->get();
             if($dona) {
                 $act = true;
             }
             return view('Nino.Donar-perfil-niño')->with('title', 'Perfil-Público')->with('nino', $nino)->with('dona', $dona)->with('act', $act); 
+        }
+    }
+
+     public function buscarD(Request $request) {
+        
+        if($request->nombre == null) {
+            return redirect()->route('Niño.index');
+        }
+        else {
+            $nino = nino::all();
+            $nino1 = nino::find($request->id);
+            $act = false;
+            $dona = donacion::join('nino-donacion', 'donaciones_id', '=', 'donaciones.id')
+                        ->join('ninos', 'ninos.id', '=', 'nino-donacion.nino_id')
+                        ->select('donaciones.nombre as don_nom','donaciones.tipo','nino-donacion.urgencia', 'nino-donacion.descripcion', 'nino-donacion.status', 'nino-donacion.comentario','nino-donacion.nino_id','nino-donacion.cantidad','nino-donacion.id')
+                        ->where('donaciones.nombre', 'LIKE', "%".$request->nombre."%")
+                        ->where('nino-donacion.nino_id','=',$request->id)
+                        ->get();
+                       // dd($dona);
+            if($dona) {
+                $act = true;
+            }
+            return view('Nino.Ninos')->with('title', 'Perfil-Niño')
+                      ->with('nino', $nino)
+                      ->with('dona', $dona)
+                      ->with('act', $act); 
         }
     }
 
@@ -297,6 +334,14 @@ class NinoController extends Controller
 
     }
 
+     public function edit_situacion( Request $request)
+    {
+        $nino=nino::find($request->get('id'));
+        $nino->situacion_actual=$request->get('SA');
+        $nino->save();
+        return redirect()->route('Niño.index');
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -313,10 +358,14 @@ class NinoController extends Controller
         $nino=nino::find($request->id);
           foreach ($nino->donaciones as $key) {
             if ($key->pivot->id==$request->don) {
-                $key->pivot->status=$request->Status;
                 $key->pivot->urgencia=$request->Urgencia;
                 $key->pivot->comentario=$request->comentario;
                 $key->pivot->cantidad=$request->cantidad;
+                if ($request->cantidad==0) {
+                  $key->pivot->status='Recibido';
+                }else{
+                  $key->pivot->status='No-recibido';
+                }
                 $key->pivot->save();
             }   
         }

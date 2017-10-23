@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="number" name="edad" placeholder="edad" class="form-control border-inp">
+                        <input type="number" name="edad" placeholder="edad" class="form-control border-inp" min='0'>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Buscar" class="btn btn-default btn-md btn-submit">

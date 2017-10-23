@@ -24,7 +24,7 @@
 			<th>Descripción</th>
 			<th>Estado</th>
 			<th>Comentario</th>
-							<th>Urgencia</th>
+			<th>Urgencia</th>
 		</tr>
 	</thead>
 	<tbody>

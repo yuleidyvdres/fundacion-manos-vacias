@@ -57,9 +57,4 @@ class nino extends Model
         $edad = Carbon::createFromDate($year,$month,$day)->age;
         return $edad;   
     }
-    public function scopeNombre($query, $nombre){
-        if (trim($nombre)!="") {
-            $query->where("nombre","LIKE","%$nombre%");
-        }       
-    }
 }
