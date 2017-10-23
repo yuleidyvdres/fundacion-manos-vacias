@@ -5,19 +5,7 @@
     <link href="{{ asset('css/common.css') }}" rel="stylesheet">
 @endsection
 @section('scripts1')
-	<script type="text/javascript">
-		function Estado_municipio(){
-		/* Para obtener el valor */
-
-			var cod = document.getElementById("Estado").value;
-			var x = document.getElementById("Parroquia");
-			if (cod=='Amazonas') {
-				var option = document.createElement("option");
-				option.text = "Prueba";
-				x.add(option);
-			}
-		}
-    </script>
+	<script src="{{ asset('js/estados.js') }}"></script>
 @endsection
 @section('content')
 	@include('layouts.common.navbar')

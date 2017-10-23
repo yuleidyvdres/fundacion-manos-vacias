@@ -67,8 +67,8 @@
 							<span class="borde-inc input-group-addon">
 								<i class="fa fa-map-marker" aria-hidden="true"></i>
 							</span>
-								<select class="form-control" id="Estado" name="Estado" onchange="Estado_municipio();" required>
-									<option> </option>
+								<select class="form-control" id="Estado" name="Estado" onchange="Estado_municipio('Parroquia','Estado');" required>
+									<option>Estado</option>
 									<option>Amazonas</option>
 									<option>Anzoátegui</option>
 									<option>Apure</option>
@@ -80,9 +80,9 @@
 									<option>Delta Amacuro</option>
 									<option>Distrito Capital</option>
 									<option>Falcón</option>
-									<option>Guárico</option>
+									<option>Guarico</option>
 									<option>Lara</option>
-									<option>Mérida</option>
+									<option>Merida</option>
 									<option>Miranda</option>
 									<option>Monagas</option>
 									<option>Nueva Esparta</option>
@@ -109,7 +109,7 @@
 			  </div>
 
 		    <center>
-	         <input type="submit" value="Agregar Niño" id="btn-agregar" class="btn btn-default btn-md btn-submit">
+	         <input type="submit" value="Agregar Niño" id="btn-agregar" class="btn btn-default btn-md btn-submit" disabled='true'>
 	        </center>	
 	        </br></br> 
       </div>		

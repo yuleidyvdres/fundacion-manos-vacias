@@ -1,3 +1,4 @@
+<script src="{{ asset('js/estados.js') }}"></script>
 <div class="container ninno" id="<?php echo $nin->id ?>" > <!-- Inicio Ni;os-->
      <!-- Datos Personales-->	
   <div class="row perfil1">
@@ -27,7 +28,7 @@
 			  	     </div>
 					<h5><b>Estado</b> </h5>
 			           <div class="input-group input-group-md input-capsule">
-							<select class="form-control" id="Estado" name="Estado" required>
+							<select class="form-control" id="Estado <?php echo $nin->nombre ?>" name="Estado" onchange="Estado_municipio('Parroquia <?php echo $nin->nombre ?>', 'Estado <?php echo $nin->nombre ?>');" required>
 									 @foreach($nin->contactos as $aux)
 						              <?php if ($aux->nombre=='Estado') {?>
 						              <option>{{$aux->pivot->valor}}</option>
@@ -63,15 +64,12 @@
 					<h5><b>Municipio</b></h5>
 		             	<div class="form-group">
 							<div class="input-group input-group-md input-capsule">
-									<select class="form-control" id="Municipio" name="Municipio" required>
+									<select class="form-control" id="Parroquia <?php echo $nin->nombre ?>" name="Municipio" required>
 										@foreach($nin->contactos as $aux)
 							              <?php if ($aux->nombre=='Municipio') {?>
 							               <option> {{$aux->pivot->valor}}</option>
 							             <?php }?>  
 							             @endforeach
-										<option>3</option>
-										<option>1</option>
-										<option>2</option>
 									</select>
 							</div>
 			  			</div>
