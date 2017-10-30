@@ -385,9 +385,15 @@ class NinoController extends Controller
     public function destroy_contacto(Request $request) //->delete();  ->detach();
     {
        $key=ninocontacto::find($request->get('id'));
-       $key->delete();
-               
-        flash('Se ha eliminado el contacto de forma exitosa')->error()->important();
+       $nino=nino::find($key->nino_id);
+       //dd($nino->contactos->count());
+       $cant=$nino->contactos->count();
+       if ($cant-2==1) {
+         flash('No se puede eliminar. Minimo debe tener una forma de contacto')->error()->important();
+       }else{
+         flash('Se ha eliminado el contacto de forma exitosa')->error()->important();
+         $key->delete();
+       }
         return redirect()->route('Niño.index');
     }
 }
