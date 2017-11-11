@@ -15,7 +15,7 @@ class ContactoSeeder extends Seeder
             'Dirección',
             'Teléfono',
             'Estado',
-            'Parroquia',
+            'Municipio',
         ];
 
         $i = 0;

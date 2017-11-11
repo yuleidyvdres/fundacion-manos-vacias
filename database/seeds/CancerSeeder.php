@@ -11,7 +11,7 @@ class CancerSeeder extends Seeder
      */
     public function run()
     {
-        $tipo_cancer = [
+         $tipo_cancer = [
             'Leucemia',
             'Tumor Sistema Nervioso Central',
             'Tumor óseo',

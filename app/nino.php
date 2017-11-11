@@ -34,18 +34,36 @@ class nino extends Model
     }
 
 
-    public function scopeBuscarNino($query, $estado, $edad){
-    	if (trim($estado)!="seleccionar") {
-            $ninos = nino::whereHas('contactos', function($q) use($estado){
-                $q->where('valor', 'LIKE', "%".$estado."%");
+    public function scopeBuscarNino($query, $request){
+        if (trim($request->estado)!="seleccionar" && $request->cancer==null) {
+            $ninos = nino::whereHas('contactos', function($q) use($request){
+                $q->where('valor', 'LIKE', "%".$request->estado."%");
             });
             return $ninos;
         }
         else{
-            if($edad!=null){
-                $ninos = nino::select('*');     
+            if($request->cancer!=null && trim($request->estado!="seleccionar")){
+                $ninos = nino::whereHas('contactos', function($query) use($request){
+                    $query->where('valor', 'LIKE', '%'.$request->estado.'%');
+                })->whereHas('cancers', function($query) use($request){
+                    $query->where('nombre', 'LIKE', '%'.$request->cancer.'%');
+                });
                 return $ninos;
             }
+            else {
+                if($request->cancer!=null){
+                    $ninos = nino::whereHas('cancers', function($q) use($request){
+                        $q->where('nombre', 'LIKE', "%".$request->cancer."%");
+                    });
+                    return $ninos;
+                }
+                else {
+                    if($request->edad!=null){
+                        $ninos = nino::select('*');   
+                        return $ninos;
+                    }
+                } 
+            }   
         }
     }
 

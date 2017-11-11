@@ -224,8 +224,8 @@ class NinoController extends Controller
         
     }
 
-    public function search (Request $request) {
-        $ninos = nino::BuscarNino($request->estado, $request->edad)->paginate(6);
+     public function search (Request $request) {
+        $ninos = nino::BuscarNino($request)->paginate(6);
         return view('Donacion')->with('title', 'Donaciones')
                                ->with('nino', $ninos)
                                ->with('edad', $request->edad);
